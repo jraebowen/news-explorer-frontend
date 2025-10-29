@@ -1,0 +1,64 @@
+.footer {
+  height: 80px;
+  padding: 0 104px 0 104px;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  color: #b6bcbf;
+  font-size: 16px;
+  padding: 32px 0 26px 0;
+  margin: 0;
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__link-home {
+  background-color: transparent;
+  border: none;
+  padding: 0 40px 0 0;
+}
+
+.footer__link-home:hover {
+  cursor: pointer;
+}
+
+.footer__link-tripleten {
+  padding: 0 40px 0 0;
+  text-decoration: none;
+  color: #1a1b22;
+}
+
+.footer__link-tripleten:hover {
+  cursor: pointer;
+}
+
+.footer__link-github {
+  height: 24px;
+  width: 24px;
+  margin: 0 24px 0 0;
+  padding: 0;
+}
+
+.footer__link-github:hover {
+  cursor: pointer;
+}
+.footer__link-linkedin {
+  height: 24px;
+  width: 24px;
+  padding: 0;
+}
+
+.footer__link-linkedin:hover {
+  cursor: pointer;
+}

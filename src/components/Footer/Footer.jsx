@@ -1,0 +1,46 @@
+import { Link } from "react-router-dom";
+
+import "./Footer.css";
+
+import linkedin from "../../assets/linkedin.png";
+import github from "../../assets/github.png";
+
+function Footer() {
+  return (
+    <section className="footer">
+      <div className="footer__content">
+        <p className="footer__copyright">
+          &copy; 2025 Supersite, Powered by News API{" "}
+        </p>
+        <ul className="footer__links">
+          <li className="footer__link">
+            <Link to="/">
+              <button className="footer__link-home">Home</button>
+            </Link>
+          </li>
+          <li className="footer__link">
+            <a href="https://tripleten.com/" className="footer__link-tripleten">
+              TripleTen
+            </a>
+          </li>
+          <li className="footer__link">
+            <a href="https://github.com/jraebowen">
+              <img src={github} alt="github" className="footer__link-github" />
+            </a>
+          </li>
+          <li className="footer__link">
+            <a href="https://www.linkedin.com/in/jaimiebowen/">
+              <img
+                src={linkedin}
+                alt="linkedin"
+                className="footer__link-linkedin"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export default Footer;

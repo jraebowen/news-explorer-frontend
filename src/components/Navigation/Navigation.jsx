@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Navigation.css";
 
 function Navigation() {
@@ -7,9 +9,11 @@ function Navigation() {
         <p className="nav__content_title">NewsExplorer</p>
         <ul className="nav__links">
           <li className="nav__item">
-            <button type="button" className="nav__links_home">
-              Home
-            </button>
+            <Link to="/">
+              <button type="button" className="nav__links_home">
+                Home
+              </button>
+            </Link>
           </li>
           <li className="nav__item">
             <button type="button" className="nav__links_login">
