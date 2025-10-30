@@ -6,7 +6,11 @@ function Navigation() {
   return (
     <nav className="nav">
       <div className="nav__content">
-        <p className="nav__content_title">NewsExplorer</p>
+        <Link to="/">
+          <button type="button" className="nav__content_logo">
+            NewsExplorer
+          </button>
+        </Link>
         <ul className="nav__links">
           <li className="nav__item">
             <Link to="/">

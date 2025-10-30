@@ -8,12 +8,19 @@
   justify-content: space-between;
 }
 
-.nav__content_title {
+.nav__content_logo {
   font-family: "Roboto Slab", "Times New Roman", Times, serif;
   font-size: 20px;
   font-weight: 700;
   margin: 0;
   padding: 30px 0 26px 0;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.nav__content_logo:hover {
+  cursor: pointer;
 }
 
 .nav__links {
