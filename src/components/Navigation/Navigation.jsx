@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 
 import "./Navigation.css";
 
-function Navigation() {
+import logout from "../../assets/logout.png";
+
+function Navigation({ isLoggedIn, onLogout }) {
   return (
     <nav className="nav">
       <div className="nav__content">
@@ -19,11 +21,33 @@ function Navigation() {
               </button>
             </Link>
           </li>
-          <li className="nav__item">
-            <button type="button" className="nav__links_login">
-              Sign in
-            </button>
-          </li>
+          {isLoggedIn ? (
+            <>
+              <li className="nav__item">
+                <button type="button" className="nav__links_profile">
+                  Saved Articles
+                </button>
+              </li>
+              <li className="nav__item">
+                <button
+                  type="button"
+                  className="nav__links_logout"
+                  onClick={onLogout}
+                >
+                  placeholder
+                  <img src={logout} alt="logout icon" className="logout-icon" />
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav__item">
+                <button type="button" className="nav__links_login">
+                  Sign in
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>

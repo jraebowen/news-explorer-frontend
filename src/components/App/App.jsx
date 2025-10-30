@@ -13,10 +13,14 @@ import Footer from "../Footer/Footer";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <div className="page">
       <div className="page__content">
-        <Header isLoggedIn={isLoggedIn}></Header>
+        <Header isLoggedIn={isLoggedIn} onLogout={handleLogout}></Header>
         <Routes>
           <Route path="/" element={<Main></Main>} />
         </Routes>

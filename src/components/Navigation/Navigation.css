@@ -74,3 +74,34 @@
 .nav__links_login:hover {
   cursor: pointer;
 }
+
+.nav__links_profile {
+  background: transparent;
+  color: #b6bcbf;
+  border: none;
+  border-radius: 100px;
+  padding: 0 12px 0 12px;
+  height: 48px;
+}
+
+.nav__links_profile:hover {
+  cursor: pointer;
+}
+
+.nav__links_logout {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100px;
+  padding: 0 12px 0 12px;
+  height: 48px;
+}
+
+.nav__links_logout:hover {
+  cursor: pointer;
+}
+
+.logout-icon {
+  padding-left: 12px;
+  vertical-align: middle;
+}
