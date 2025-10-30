@@ -7,6 +7,7 @@ import "./App.css";
 //component imports
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import About from "../About/About";
 import Footer from "../Footer/Footer";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main></Main>} />
         </Routes>
+        <About></About>
         <Footer></Footer>
       </div>
     </div>

@@ -1,9 +1,5 @@
 import "./Main.css";
 
-import About from "../About/About";
-
-function Main() {
-  return <About></About>;
-}
+function Main() {}
 
 export default Main;
