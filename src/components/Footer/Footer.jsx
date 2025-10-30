@@ -7,7 +7,7 @@ import github from "../../assets/github.png";
 
 function Footer() {
   return (
-    <section className="footer">
+    <footer className="footer">
       <div className="footer__content">
         <p className="footer__copyright">
           &copy; 2025 Supersite, Powered by News API{" "}
@@ -39,7 +39,7 @@ function Footer() {
           </li>
         </ul>
       </div>
-    </section>
+    </footer>
   );
 }
 
