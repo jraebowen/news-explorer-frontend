@@ -11,10 +11,12 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="page">
       <div className="page__content">
-        <Header></Header>
+        <Header isLoggedIn={isLoggedIn}></Header>
         <Routes>
           <Route path="/" element={<Main></Main>} />
         </Routes>

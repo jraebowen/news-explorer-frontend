@@ -1,0 +1,29 @@
+.main {
+  margin: 0;
+  padding: 80px 104px;
+  background-color: #f5f6f7;
+}
+
+.main__title {
+  color: #1a1b22;
+  font-family: "Roboto Slab", "Times New Roman", Times, serif;
+  font-size: 40px;
+  line-height: 46px;
+  margin: 0 0 64px 0;
+}
+
+.main__btn-show-more {
+  background-color: #e8e8e8;
+  color: #1a1b22;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  width: 288px;
+  height: 64px;
+  border: none;
+  padding: 0;
+  border-radius: 80px;
+  align-items: center;
+  display: block;
+  margin: 0 auto;
+}

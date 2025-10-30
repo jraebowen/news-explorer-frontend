@@ -3,10 +3,10 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Header() {
+function Header({ isLoggedIn }) {
   return (
     <section className="header">
-      <Navigation></Navigation>
+      <Navigation isLoggedIn={isLoggedIn}></Navigation>
       <div className="header__content">
         <div className="header__search">
           <h1 className="header__search_title">
