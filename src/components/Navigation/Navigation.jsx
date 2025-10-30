@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import "./Navigation.css";
 
 import logout from "../../assets/logout.png";
+import LoggedInContext from "../../contexts/LoggedInContext";
 
-function Navigation({ isLoggedIn, onLogout }) {
+function Navigation({ onLogout }) {
+  const { isLoggedIn } = useContext(LoggedInContext);
+
   return (
     <nav className="nav">
       <div className="nav__content">

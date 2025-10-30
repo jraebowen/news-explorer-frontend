@@ -10,6 +10,9 @@ import Main from "../Main/Main";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 
+//context imports
+import LoggedInContext from "../../contexts/LoggedInContext";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -18,16 +21,18 @@ function App() {
   };
 
   return (
-    <div className="page">
-      <div className="page__content">
-        <Header isLoggedIn={isLoggedIn} onLogout={handleLogout}></Header>
-        <Routes>
-          <Route path="/" element={<Main></Main>} />
-        </Routes>
-        <About></About>
-        <Footer></Footer>
+    <LoggedInContext.Provider value={{ isLoggedIn }}>
+      <div className="page">
+        <div className="page__content">
+          <Header onLogout={handleLogout}></Header>
+          <Routes>
+            <Route path="/" element={<Main></Main>} />
+          </Routes>
+          <About></About>
+          <Footer></Footer>
+        </div>
       </div>
-    </div>
+    </LoggedInContext.Provider>
   );
 }
 
