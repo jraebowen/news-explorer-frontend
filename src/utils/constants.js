@@ -44,7 +44,7 @@ export const searchResults = [
     description:
       "Outfit your wrist with the previous generation of Pixel smartwatch for just $200.",
     urlToImage:
-      "https://s.yimg.com/ny/api/res/1.2/xMVHp5E8FLYhAJvZPeHLPQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02MDA-/https://media.zenfs.com/en/the_wall_street_journal_hosted_996/cad7caa83e722c4ffe8e627c2731766e",
+      "https://media.wired.com/photos/6902575aba6da1ec470b32b3/191:100/w_1280,c_limit/The%20Pixel%20Watch%203%20is%20$100%20Off.png",
     source: "Wired",
   },
 ];

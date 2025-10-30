@@ -10,6 +10,7 @@
 .news-card__image {
   width: 400px;
   height: 272px;
+  object-fit: cover;
 }
 
 .news-card__text {
