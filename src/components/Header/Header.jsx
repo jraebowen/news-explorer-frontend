@@ -5,7 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 
 function Header({ onLogout }) {
   return (
-    <section className="header">
+    <header className="header">
       <Navigation onLogout={onLogout}></Navigation>
       <div className="header__content">
         <div className="header__search">
@@ -19,7 +19,7 @@ function Header({ onLogout }) {
           <SearchForm></SearchForm>
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 

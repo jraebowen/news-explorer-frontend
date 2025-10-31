@@ -145,3 +145,25 @@
     height: 136px;
   }
 }
+
+@media screen and (max-width: 550px) {
+  .news-card {
+    height: 440px;
+    width: 288px;
+  }
+
+  .news-card__image {
+    width: 288px;
+    height: 196px;
+  }
+
+  .news-card__text-title {
+    font-size: 22px;
+    line-height: 24px;
+    height: 48px;
+  }
+
+  .news-card__positioning-container {
+    height: 116px;
+  }
+}

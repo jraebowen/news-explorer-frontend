@@ -17,7 +17,7 @@ function Navigation({ onLogout }) {
             NewsExplorer
           </button>
         </Link>
-        <ul className="nav__links">
+        <ul className="nav__links nav__links_desktop">
           <li className="nav__item">
             <Link to="/">
               <button type="button" className="nav__links_home">
@@ -53,6 +53,7 @@ function Navigation({ onLogout }) {
             </>
           )}
         </ul>
+        <button className="nav__links_mobile"></button>
       </div>
     </nav>
   );

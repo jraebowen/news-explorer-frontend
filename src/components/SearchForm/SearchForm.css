@@ -17,6 +17,7 @@
 
 .search-bar::placeholder {
   color: #b6bcbf;
+  font-size: 16px;
 }
 
 .search-bar::-webkit-search-cancel-button {
@@ -52,5 +53,26 @@
   .search-bar {
     margin-top: 48px;
     max-width: 452px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .search-container {
+    margin-top: 122px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-bar {
+    margin: 0 0 16px 0;
+    max-width: 288px;
+    height: 56px;
+  }
+
+  .search-button {
+    margin: 0 0 32px 0;
+    width: 288px;
+    position: relative;
+    height: 56px;
   }
 }

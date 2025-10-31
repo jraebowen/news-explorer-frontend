@@ -13,16 +13,21 @@ function Footer() {
           &copy; 2025 Supersite, Powered by News API{" "}
         </p>
         <ul className="footer__links">
-          <li className="footer__link">
-            <Link to="/">
-              <button className="footer__link-home">Home</button>
-            </Link>
-          </li>
-          <li className="footer__link">
-            <a href="https://tripleten.com/" className="footer__link-tripleten">
-              TripleTen
-            </a>
-          </li>
+          <div className="footer__links_text-links">
+            <li className="footer__link">
+              <Link to="/">
+                <button className="footer__link-home">Home</button>
+              </Link>
+            </li>
+            <li className="footer__link">
+              <a
+                href="https://tripleten.com/"
+                className="footer__link-tripleten"
+              >
+                TripleTen
+              </a>
+            </li>
+          </div>
           <li className="footer__link">
             <a href="https://github.com/jraebowen">
               <img src={github} alt="github" className="footer__link-github" />
