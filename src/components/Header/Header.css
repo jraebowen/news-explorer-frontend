@@ -32,3 +32,20 @@
 .header__search_description {
   margin: 0;
 }
+
+@media screen and (max-width: 850px) {
+  .header {
+    height: 400px;
+  }
+
+  .header__search_title {
+    font-size: 36px;
+    line-height: 40px;
+    padding: 36px 0 16px 0;
+    max-width: 452px;
+  }
+
+  .header__search_description {
+    max-width: 452px;
+  }
+}

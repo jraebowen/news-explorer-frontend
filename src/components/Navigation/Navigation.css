@@ -17,10 +17,12 @@
   background-color: transparent;
   border: none;
   color: white;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav__content_logo:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .nav__links {
@@ -44,10 +46,12 @@
   color: white;
   background: transparent;
   border: none;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav__links_home:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .nav__links_home::after {
@@ -69,10 +73,12 @@
   padding: 0;
   width: 176px;
   height: 48px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav__links_login:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .nav__links_profile {
@@ -82,10 +88,12 @@
   border-radius: 100px;
   padding: 0 12px 0 12px;
   height: 48px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav__links_profile:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .nav__links_logout {
@@ -95,13 +103,28 @@
   border-radius: 100px;
   padding: 0 12px 0 12px;
   height: 48px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav__links_logout:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .logout-icon {
   padding-left: 12px;
   vertical-align: middle;
+}
+
+@media screen and (max-width: 850px) {
+  .nav {
+    padding: 0 40px;
+  }
+  .nav__links {
+    font-size: 16px;
+  }
+
+  .nav__links_login {
+    width: 152px;
+  }
 }

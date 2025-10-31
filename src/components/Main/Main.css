@@ -32,9 +32,33 @@
   align-items: center;
   display: block;
   margin: 0 auto;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .main__btn-show-more:hover {
   background-color: #e8e8e8;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1130px) {
+  .main {
+    padding: 40px 0;
+  }
+
+  .main__title {
+    font-size: 30px;
+    line-height: 34px;
+    margin: 0 0 32px 0;
+  }
+
+  .main__btn-show-more {
+    width: 240px;
+    height: 56px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .main__content {
+    padding: 0 40px;
+  }
 }

@@ -6,3 +6,11 @@
   margin: 0;
   padding: 0 0 64px 0;
 }
+
+@media screen and (max-width: 1130px) {
+  .news-card-list {
+    grid-template-columns: repeat(auto-fit, 224px);
+    gap: 8px;
+    padding: 0 0 32px 0;
+  }
+}

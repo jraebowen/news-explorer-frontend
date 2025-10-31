@@ -27,20 +27,24 @@
   background-color: transparent;
   border: none;
   padding: 0 40px 0 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .footer__link-home:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .footer__link-tripleten {
   padding: 0 40px 0 0;
   text-decoration: none;
   color: #1a1b22;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .footer__link-tripleten:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .footer__link-github {
@@ -48,17 +52,32 @@
   width: 24px;
   margin: 0 24px 0 0;
   padding: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .footer__link-github:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 .footer__link-linkedin {
   height: 24px;
   width: 24px;
   padding: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .footer__link-linkedin:hover {
   cursor: pointer;
+  opacity: 70%;
+}
+
+@media screen and (max-width: 850px) {
+  .footer {
+    padding: 0 40px 0 40px;
+  }
+
+  .footer__copyright {
+    padding: 24px 0 18px 0;
+    margin: 0;
+  }
 }
