@@ -19,6 +19,10 @@ function NewsCards({ item }) {
           alt={item.title}
           className="news-card__image"
         />
+        <div className="news-card__save-content">
+          <p className="news-card__save-text">Sign in to save articles</p>
+          <button className="news-card__save-btn"></button>
+        </div>
         <div className="news-card__text">
           <p className="news-card__text-date">{updatedDate}</p>
           <p className="news-card__text-title">{item.title}</p>

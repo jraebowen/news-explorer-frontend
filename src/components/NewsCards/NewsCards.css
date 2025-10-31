@@ -5,12 +5,48 @@
   height: 576px;
   width: 400px;
   background-color: white;
+  position: relative;
 }
 
 .news-card__image {
   width: 400px;
   height: 272px;
   object-fit: cover;
+}
+
+.news-card__save-text {
+  background-color: white;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 500;
+  width: 182px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 0;
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  top: 24px;
+  right: 70px;
+  opacity: 0;
+}
+
+.news-card__save-btn {
+  background-image: url(../../assets/save-icon.png);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+.news-card__save-btn:hover {
+  background-image: url(../../assets/save-icon-hover.png);
+  cursor: pointer;
+}
+.news-card__save-content:hover .news-card__save-text {
+  opacity: 1;
 }
 
 .news-card__text {

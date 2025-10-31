@@ -19,7 +19,7 @@
 }
 
 .main__btn-show-more {
-  background-color: #e8e8e8;
+  background-color: #ffffff;
   color: #1a1b22;
   font-size: 18px;
   font-weight: 500;
@@ -32,4 +32,9 @@
   align-items: center;
   display: block;
   margin: 0 auto;
+}
+
+.main__btn-show-more:hover {
+  background-color: #e8e8e8;
+  cursor: pointer;
 }
