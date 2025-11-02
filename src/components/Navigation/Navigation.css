@@ -1,15 +1,15 @@
 .nav {
-  border-bottom: 1px solid #c4c4c4;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.5);
   padding: 0 104px;
 }
 
-.nav__content {
+.nav__content_desktop {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.nav__content_logo {
+.nav__content-logo {
   font-family: "Roboto Slab", "Times New Roman", Times, serif;
   font-size: 20px;
   font-weight: 700;
@@ -21,7 +21,7 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.nav__content_logo:hover {
+.nav__content-logo:hover {
   cursor: pointer;
   opacity: 70%;
 }
@@ -42,7 +42,7 @@
   list-style-type: none;
 }
 
-.nav__links_home {
+.nav__links-home {
   margin: 0;
   color: white;
   background: transparent;
@@ -50,12 +50,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.nav__links_home:hover {
+.nav__links-home:hover {
   cursor: pointer;
   opacity: 70%;
 }
 
-.nav__links_home::after {
+.nav__links-home::after {
   content: "";
   position: absolute;
   left: 0;
@@ -66,7 +66,7 @@
   background-color: white;
 }
 
-.nav__links_login {
+.nav__links-login {
   background: transparent;
   color: white;
   border: 1px solid white;
@@ -77,12 +77,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.nav__links_login:hover {
+.nav__links-login:hover {
   cursor: pointer;
   opacity: 70%;
 }
 
-.nav__links_profile {
+.nav__links-profile {
   background: transparent;
   color: #b6bcbf;
   border: none;
@@ -92,7 +92,7 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.nav__links_profile:hover {
+.nav__links-profile:hover {
   cursor: pointer;
   opacity: 70%;
 }
@@ -117,7 +117,7 @@
   vertical-align: middle;
 }
 
-.nav__links_mobile {
+.nav__links_mobile-btn {
   display: none;
 }
 
@@ -139,7 +139,18 @@
     padding: 0 16px;
   }
 
-  .nav__content_logo {
+  .nav__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(26, 27, 34, 0.6);
+    z-index: 5;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .nav__content-logo {
     font-size: 16px;
   }
 
@@ -147,7 +158,7 @@
     display: none;
   }
 
-  .nav__links_mobile {
+  .nav__links_mobile-btn {
     display: flex;
     background-image: url(../../assets/mobile-menu.png);
     height: 24px;
@@ -158,8 +169,81 @@
     transition: opacity 0.3s ease-in-out;
   }
 
-  .nav__links_mobile:hover {
+  .nav__links_mobile-btn:hover {
     cursor: pointer;
     opacity: 70%;
+  }
+
+  .nav__content_mobile-modal {
+    background-color: #1a1b22;
+    width: 100%;
+    height: 230px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav__content_mobile-modal_logged-in {
+    height: 308px;
+  }
+
+  .nav__header-mobile {
+    border-bottom: 1px solid rgba(196, 196, 196, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .nav__content-logo_mobile {
+    font-size: 16px;
+  }
+
+  .nav__links_mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 0 16px;
+  }
+
+  .nav__item_home {
+    align-self: flex-start;
+  }
+
+  .nav__links-home_mobile {
+    line-height: 56px;
+  }
+
+  .nav__links-home::after {
+    display: none;
+  }
+
+  .nav__item_logout {
+    height: 56px;
+  }
+
+  .nav__item_profile {
+    align-self: flex-start;
+    line-height: 56px;
+  }
+
+  .nav__mobile-menu_modal-close-btn {
+    background-image: url(../../assets/modal-close.png);
+    background-color: transparent;
+    height: 24px;
+    width: 24px;
+    border: none;
+    transition: opacity 0.3s ease-in-out;
+    padding: 0;
+  }
+
+  .nav__mobile-menu_modal-close-btn:hover {
+    cursor: pointer;
+    opacity: 70%;
+  }
+  .nav__links-login {
+    width: 288px;
   }
 }

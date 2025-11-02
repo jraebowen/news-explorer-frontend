@@ -14,17 +14,27 @@ import Footer from "../Footer/Footer";
 import LoggedInContext from "../../contexts/LoggedInContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpened((prev) => !prev);
   };
 
   return (
     <LoggedInContext.Provider value={{ isLoggedIn }}>
       <div className="page">
         <div className="page__content">
-          <Header onLogout={handleLogout}></Header>
+          <Header
+            onLogout={handleLogout}
+            toggleMobileMenu={toggleMobileMenu}
+            isMobileMenuOpened={isMobileMenuOpened}
+          ></Header>
           <Routes>
             <Route path="/" element={<Main></Main>} />
           </Routes>
