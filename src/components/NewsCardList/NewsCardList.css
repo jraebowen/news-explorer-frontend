@@ -1,10 +1,18 @@
+.news__home {
+  padding: 0 0 64px 0;
+}
+
 .news-card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, 400px);
   gap: 16px;
   justify-content: center;
   margin: 0;
-  padding: 0 0 64px 0;
+}
+
+.news__saved-news {
+  background-color: #f5f6f7;
+  padding: 62px 102px;
 }
 
 @media screen and (max-width: 1130px) {

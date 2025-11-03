@@ -8,6 +8,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import About from "../About/About";
+import SavedNews from "../SavedNews/SavedNews";
 import Footer from "../Footer/Footer";
 
 //context imports
@@ -30,15 +31,25 @@ function App() {
     <LoggedInContext.Provider value={{ isLoggedIn }}>
       <div className="page">
         <div className="page__content">
-          <Header
-            onLogout={handleLogout}
-            toggleMobileMenu={toggleMobileMenu}
-            isMobileMenuOpened={isMobileMenuOpened}
-          ></Header>
           <Routes>
-            <Route path="/" element={<Main></Main>} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header
+                    onLogout={handleLogout}
+                    toggleMobileMenu={toggleMobileMenu}
+                    isMobileMenuOpened={isMobileMenuOpened}
+                  ></Header>
+                  <Main />
+                  <About />
+                </>
+              }
+            />
           </Routes>
-          <About></About>
+          <Routes>
+            <Route path="/saved-news" element={<SavedNews></SavedNews>} />
+          </Routes>
           <Footer></Footer>
         </div>
       </div>

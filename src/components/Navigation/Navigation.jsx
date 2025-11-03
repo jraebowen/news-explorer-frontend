@@ -1,12 +1,16 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "./Navigation.css";
 
-import logout from "../../assets/logout.png";
+import logouthome from "../../assets/logout-home.png";
+import logoutnews from "../../assets/logout-saved-news.png";
 import LoggedInContext from "../../contexts/LoggedInContext";
 
 function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   const { isLoggedIn } = useContext(LoggedInContext);
 
   return (
@@ -15,7 +19,9 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
         <Link to="/">
           <button
             type="button"
-            className="nav__content-logo nav__content-logo_desktop"
+            className={`nav__content-logo nav__content-logo_desktop ${
+              isHomePage ? "" : "nav__content-logo_saved-news"
+            }`}
           >
             NewsExplorer
           </button>
@@ -23,7 +29,12 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
         <ul className="nav__links nav__links_desktop">
           <li className="nav__item">
             <Link to="/">
-              <button type="button" className="nav__links-home">
+              <button
+                type="button"
+                className={`nav__links-home ${
+                  isHomePage ? "" : "nav__links-home_saved-news"
+                }`}
+              >
                 Home
               </button>
             </Link>
@@ -31,19 +42,32 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
 
           {isLoggedIn ? (
             <>
-              <li className="nav__item">
-                <button type="button" className="nav__links-profile">
-                  Saved Articles
-                </button>
-              </li>
+              <Link to="saved-news">
+                <li className="nav__item">
+                  <button
+                    type="button"
+                    className={`nav__links-profile ${
+                      isHomePage ? "" : "nav__links-profile_saved-news"
+                    }`}
+                  >
+                    Saved Articles
+                  </button>
+                </li>
+              </Link>
               <li className="nav__item">
                 <button
                   type="button"
-                  className="nav__links_logout"
+                  className={`nav__links-logout ${
+                    isHomePage ? "" : "nav__links-logout_saved-news"
+                  }`}
                   onClick={onLogout}
                 >
                   placeholder
-                  <img src={logout} alt="logout icon" className="logout-icon" />
+                  <img
+                    src={isHomePage ? logouthome : logoutnews}
+                    alt="logout icon"
+                    className="logout-icon"
+                  />
                 </button>
               </li>
             </>
@@ -103,14 +127,16 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
                 </li>
                 {isLoggedIn ? (
                   <>
-                    <li className="nav__item nav__item_profile">
-                      <button
-                        type="button"
-                        className="nav__links-profile nav__links-profile_mobile"
-                      >
-                        Saved Articles
-                      </button>
-                    </li>
+                    <Link to="/saved-news">
+                      <li className="nav__item nav__item_profile">
+                        <button
+                          type="button"
+                          className="nav__links-profile nav__links-profile_mobile"
+                        >
+                          Saved Articles
+                        </button>
+                      </li>
+                    </Link>
                     <li className="nav__item nav__item_logout">
                       <button
                         type="button"
