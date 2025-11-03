@@ -4,10 +4,14 @@ import Navigation from "../Navigation/Navigation";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-function SavedNews() {
+function SavedNews({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
   return (
     <section className="saved-news">
-      <Navigation></Navigation>
+      <Navigation
+        onLogout={onLogout}
+        toggleMobileMenu={toggleMobileMenu}
+        isMobileMenuOpened={isMobileMenuOpened}
+      ></Navigation>
       <SavedNewsHeader></SavedNewsHeader>
       <NewsCardList></NewsCardList>
     </section>

@@ -177,7 +177,6 @@
 
   .nav__links_mobile-btn {
     display: flex;
-    background-image: url(../../assets/mobile-menu.png);
     height: 24px;
     width: 24px;
     border: none;
@@ -189,6 +188,14 @@
   .nav__links_mobile-btn:hover {
     cursor: pointer;
     opacity: 70%;
+  }
+
+  .nav__links_mobile-btn_home {
+    background-image: url(../../assets/mobile-menu.png);
+  }
+
+  .nav__links_mobile-btn_news {
+    background-image: url(../../assets/mobile-menu-saved-news.png);
   }
 
   .nav__content_mobile-modal {
@@ -242,7 +249,6 @@
   }
 
   .nav__item_profile {
-    align-self: flex-start;
     line-height: 56px;
   }
 

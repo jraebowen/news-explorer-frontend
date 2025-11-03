@@ -85,7 +85,11 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
         {!isMobileMenuOpened && (
           <button
             type="button"
-            className="nav__links_mobile-btn"
+            className={`nav__links_mobile-btn ${
+              isHomePage
+                ? "nav__links_mobile-btn_home"
+                : "nav__links_mobile-btn_news"
+            }`}
             onClick={toggleMobileMenu}
           />
         )}
@@ -132,6 +136,7 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
                         <button
                           type="button"
                           className="nav__links-profile nav__links-profile_mobile"
+                          onClick={toggleMobileMenu}
                         >
                           Saved Articles
                         </button>
@@ -140,12 +145,12 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
                     <li className="nav__item nav__item_logout">
                       <button
                         type="button"
-                        className="nav__links_logout"
+                        className="nav__links-logout"
                         onClick={onLogout}
                       >
                         placeholder
                         <img
-                          src={logout}
+                          src={logouthome}
                           alt="logout icon"
                           className="logout-icon"
                         />

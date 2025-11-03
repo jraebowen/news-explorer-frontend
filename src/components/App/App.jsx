@@ -41,14 +41,23 @@ function App() {
                     toggleMobileMenu={toggleMobileMenu}
                     isMobileMenuOpened={isMobileMenuOpened}
                   ></Header>
-                  <Main />
+                  <Main></Main>
                   <About />
                 </>
               }
             />
           </Routes>
           <Routes>
-            <Route path="/saved-news" element={<SavedNews></SavedNews>} />
+            <Route
+              path="/saved-news"
+              element={
+                <SavedNews
+                  onLogout={handleLogout}
+                  toggleMobileMenu={toggleMobileMenu}
+                  isMobileMenuOpened={isMobileMenuOpened}
+                ></SavedNews>
+              }
+            />
           </Routes>
           <Footer></Footer>
         </div>
