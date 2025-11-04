@@ -2,7 +2,7 @@ import "./LoginModal.css";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, onClose }) {
+function LoginModal({ isOpen, onClose, onRegister }) {
   return (
     <ModalWithForm
       isOpen={isOpen}
@@ -14,7 +14,8 @@ function LoginModal({ isOpen, onClose }) {
           or{" "}
           <button
             type="button"
-            className="form-modal__secondary-button_loginmodal"
+            className="form-modal__secondary-button"
+            onClick={onRegister}
           >
             Sign up
           </button>

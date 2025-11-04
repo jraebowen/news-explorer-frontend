@@ -11,6 +11,7 @@ import About from "../About/About";
 import SavedNews from "../SavedNews/SavedNews";
 import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 //context imports
 import LoggedInContext from "../../contexts/LoggedInContext";
@@ -32,6 +33,10 @@ function App() {
 
   const handleLoginModal = () => {
     setActiveModal("login-modal");
+  };
+
+  const handleRegisterModal = () => {
+    setActiveModal("register-modal");
   };
 
   const handleModalClose = () => {
@@ -77,7 +82,13 @@ function App() {
         <LoginModal
           isOpen={activeModal === "login-modal"}
           onClose={handleModalClose}
+          onRegister={handleRegisterModal}
         ></LoginModal>
+        <RegisterModal
+          isOpen={activeModal === "register-modal"}
+          onClose={handleModalClose}
+          onLogin={handleLoginModal}
+        ></RegisterModal>
       </div>
     </LoggedInContext.Provider>
   );

@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.form-modal__secondary-button_loginmodal {
+.form-modal__secondary-button {
   border: none;
   background-color: transparent;
   color: rgba(47, 113, 229, 1);
@@ -49,7 +49,7 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.form-modal__secondary-button_loginmodal:hover {
+.form-modal__secondary-button:hover {
   color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
 }
