@@ -52,6 +52,7 @@ function App() {
                     toggleMobileMenu={toggleMobileMenu}
                     isMobileMenuOpened={isMobileMenuOpened}
                     onLogin={handleLoginModal}
+                    activeModal={activeModal}
                   ></Header>
                   <Main></Main>
                   <About />

@@ -24,10 +24,13 @@
   margin: 0;
   padding-bottom: 10px;
   border: none;
-  border-bottom: 1px solid black;
-  opacity: 20%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 1);
 }
 
+.form__input::placeholder {
+  opacity: 20%;
+}
 .form-modal__secondary-button_text {
   color: rgba(0, 0, 0, 1);
   font-family: "Inter", Helvetica, Arial, sans-serif;
@@ -49,4 +52,11 @@
 .form-modal__secondary-button_loginmodal:hover {
   color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
+}
+
+@media screen and (max-width: 550px) {
+  .form__fieldset {
+    margin: 0 16px 30px 16px;
+    max-width: 100%;
+  }
 }

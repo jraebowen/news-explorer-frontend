@@ -165,6 +165,13 @@
     background-color: rgba(26, 27, 34, 0.6);
     z-index: 5;
     transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav__overlay--open {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav__content-logo {
@@ -206,7 +213,16 @@
     top: 0;
     left: 0;
     z-index: 10;
-    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .nav__content_mobile-modal--open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav__content_mobile-modal_logged-in {
@@ -253,8 +269,9 @@
   }
 
   .nav__mobile-menu_modal-close-btn {
-    background-image: url(../../assets/modal-close.png);
+    background-image: url(../../assets/modal-close.svg);
     background-color: transparent;
+    background-size: cover;
     height: 24px;
     width: 24px;
     border: none;

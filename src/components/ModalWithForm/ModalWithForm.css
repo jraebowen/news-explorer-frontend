@@ -20,8 +20,7 @@
 }
 
 .form-modal__close-button {
-  background: url(../../assets/modal-close.png);
-
+  background: url(../../assets/modal-close.svg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 40px;
@@ -42,7 +41,6 @@
 .form-modal__container {
   background-color: white;
   max-width: 358px;
-  width: 100%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -66,4 +64,41 @@
   border-radius: 100px;
   box-shadow: 0 5px 15px 0 rgba(14, 26, 57, 0.2);
   margin: 8px auto 16px auto;
+}
+
+@media screen and (max-width: 550px) {
+  .modal {
+    background-color: transparent;
+    align-items: flex-end;
+  }
+
+  .form-modal__container {
+    max-width: none;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 65px;
+    border-radius: 20px 20px 0 0;
+    padding: 16px 0 0 0;
+  }
+
+  .form-modal__close-button {
+    width: 24px;
+    height: 24px;
+    right: -5%;
+    top: -5%;
+    position: absolute;
+    top: -40px;
+    right: 16px;
+  }
+
+  .form-modal__title {
+    margin: 0 0 22px 17px;
+  }
+
+  .form-modal__button {
+    max-width: 288px;
+  }
 }

@@ -3,7 +3,13 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Header({ onLogin, onLogout, toggleMobileMenu, isMobileMenuOpened }) {
+function Header({
+  onLogin,
+  onLogout,
+  toggleMobileMenu,
+  isMobileMenuOpened,
+  activeModal,
+}) {
   return (
     <header className="header">
       <Navigation
@@ -11,6 +17,7 @@ function Header({ onLogin, onLogout, toggleMobileMenu, isMobileMenuOpened }) {
         onLogout={onLogout}
         toggleMobileMenu={toggleMobileMenu}
         isMobileMenuOpened={isMobileMenuOpened}
+        activeModal={activeModal}
       ></Navigation>
       <div className="header__content">
         <div className="header__search">

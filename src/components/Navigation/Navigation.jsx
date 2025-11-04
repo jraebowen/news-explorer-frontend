@@ -12,6 +12,7 @@ function Navigation({
   onLogout,
   toggleMobileMenu,
   isMobileMenuOpened,
+  activeModal,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -90,8 +91,7 @@ function Navigation({
             </>
           )}
         </ul>
-
-        {!isMobileMenuOpened && (
+        {!isMobileMenuOpened && !activeModal && (
           <button
             type="button"
             className={`nav__links_mobile-btn ${
@@ -102,87 +102,98 @@ function Navigation({
             onClick={toggleMobileMenu}
           />
         )}
-        {isMobileMenuOpened && (
-          <>
-            <div className="nav__overlay" onClick={toggleMobileMenu}></div>
-            <div
-              className={`nav__content nav__content_mobile-modal ${
-                isLoggedIn ? "nav__content_mobile-modal_logged-in" : ""
-              }`}
-            >
-              <div className="nav__header-mobile">
+        <>
+          <div
+            className={`nav__overlay ${
+              isMobileMenuOpened ? "nav__overlay--open" : "nav__overlay--closed"
+            }`}
+            onClick={toggleMobileMenu}
+          ></div>
+
+          <div
+            className={`nav__content nav__content_mobile-modal ${
+              isLoggedIn ? "nav__content_mobile-modal_logged-in" : ""
+            } ${
+              isMobileMenuOpened
+                ? "nav__content_mobile-modal--open"
+                : "nav__content_mobile-modal--closed"
+            }`}
+          >
+            <div className="nav__header-mobile">
+              <Link to="/">
+                <button
+                  type="button"
+                  className="nav__content-logo nav__content-logo_mobile"
+                >
+                  NewsExplorer
+                </button>
+              </Link>
+              <button
+                type="button"
+                className="nav__mobile-menu_modal-close-btn"
+                onClick={toggleMobileMenu}
+              />
+            </div>
+
+            <ul className="nav__links nav__links_mobile">
+              <li className="nav__item nav__item_home">
                 <Link to="/">
                   <button
                     type="button"
-                    className="nav__content-logo nav__content-logo_mobile"
+                    className="nav__links-home nav__links-home_mobile"
+                    onClick={toggleMobileMenu}
                   >
-                    NewsExplorer
+                    Home
                   </button>
                 </Link>
-                <button
-                  type="button"
-                  className="nav__mobile-menu_modal-close-btn"
-                  onClick={toggleMobileMenu}
-                />
-              </div>
-
-              <ul className="nav__links nav__links_mobile">
-                <li className="nav__item nav__item_home">
-                  <Link to="/">
+              </li>
+              {isLoggedIn ? (
+                <>
+                  <Link to="/saved-news">
+                    <li className="nav__item nav__item_profile">
+                      <button
+                        type="button"
+                        className="nav__links-profile nav__links-profile_mobile"
+                        onClick={toggleMobileMenu}
+                      >
+                        Saved Articles
+                      </button>
+                    </li>
+                  </Link>
+                  <li className="nav__item nav__item_logout">
                     <button
                       type="button"
-                      className="nav__links-home nav__links-home_mobile"
-                      onClick={toggleMobileMenu}
+                      className="nav__links-logout"
+                      onClick={onLogout}
                     >
-                      Home
+                      placeholder
+                      <img
+                        src={logouthome}
+                        alt="logout icon"
+                        className="logout-icon"
+                      />
                     </button>
-                  </Link>
-                </li>
-                {isLoggedIn ? (
-                  <>
-                    <Link to="/saved-news">
-                      <li className="nav__item nav__item_profile">
-                        <button
-                          type="button"
-                          className="nav__links-profile nav__links-profile_mobile"
-                          onClick={toggleMobileMenu}
-                        >
-                          Saved Articles
-                        </button>
-                      </li>
-                    </Link>
-                    <li className="nav__item nav__item_logout">
-                      <button
-                        type="button"
-                        className="nav__links-logout"
-                        onClick={onLogout}
-                      >
-                        placeholder
-                        <img
-                          src={logouthome}
-                          alt="logout icon"
-                          className="logout-icon"
-                        />
-                      </button>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li className="nav__item">
-                      <button
-                        type="button"
-                        className="nav__links-login"
-                        onClick={onLogin}
-                      >
-                        Sign in
-                      </button>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
-          </>
-        )}
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav__item">
+                    <button
+                      type="button"
+                      className="nav__links-login"
+                      onClick={() => {
+                        onLogin();
+                        toggleMobileMenu();
+                      }}
+                    >
+                      Sign in
+                    </button>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+        </>
       </div>
     </nav>
   );
