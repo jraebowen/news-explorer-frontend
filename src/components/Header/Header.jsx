@@ -3,10 +3,11 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Header({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
+function Header({ onLogin, onLogout, toggleMobileMenu, isMobileMenuOpened }) {
   return (
     <header className="header">
       <Navigation
+        onLogin={onLogin}
         onLogout={onLogout}
         toggleMobileMenu={toggleMobileMenu}
         isMobileMenuOpened={isMobileMenuOpened}

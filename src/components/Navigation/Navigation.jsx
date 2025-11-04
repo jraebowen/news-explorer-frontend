@@ -7,7 +7,12 @@ import logouthome from "../../assets/logout-home.png";
 import logoutnews from "../../assets/logout-saved-news.png";
 import LoggedInContext from "../../contexts/LoggedInContext";
 
-function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
+function Navigation({
+  onLogin,
+  onLogout,
+  toggleMobileMenu,
+  isMobileMenuOpened,
+}) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -74,7 +79,11 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
           ) : (
             <>
               <li className="nav__item">
-                <button type="button" className="nav__links-login">
+                <button
+                  type="button"
+                  className="nav__links-login"
+                  onClick={onLogin}
+                >
                   Sign in
                 </button>
               </li>
@@ -160,7 +169,11 @@ function Navigation({ onLogout, toggleMobileMenu, isMobileMenuOpened }) {
                 ) : (
                   <>
                     <li className="nav__item">
-                      <button type="button" className="nav__links-login">
+                      <button
+                        type="button"
+                        className="nav__links-login"
+                        onClick={onLogin}
+                      >
                         Sign in
                       </button>
                     </li>

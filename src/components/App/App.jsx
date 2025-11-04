@@ -10,14 +10,17 @@ import Main from "../Main/Main";
 import About from "../About/About";
 import SavedNews from "../SavedNews/SavedNews";
 import Footer from "../Footer/Footer";
+import LoginModal from "../LoginModal/LoginModal";
 
 //context imports
 import LoggedInContext from "../../contexts/LoggedInContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+
+  const [activeModal, setActiveModal] = useState("");
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -25,6 +28,14 @@ function App() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
+  };
+
+  const handleLoginModal = () => {
+    setActiveModal("login-modal");
+  };
+
+  const handleModalClose = () => {
+    setActiveModal("");
   };
 
   return (
@@ -40,6 +51,7 @@ function App() {
                     onLogout={handleLogout}
                     toggleMobileMenu={toggleMobileMenu}
                     isMobileMenuOpened={isMobileMenuOpened}
+                    onLogin={handleLoginModal}
                   ></Header>
                   <Main></Main>
                   <About />
@@ -61,6 +73,10 @@ function App() {
           </Routes>
           <Footer></Footer>
         </div>
+        <LoginModal
+          isOpen={activeModal === "login-modal"}
+          onClose={handleModalClose}
+        ></LoginModal>
       </div>
     </LoggedInContext.Provider>
   );
