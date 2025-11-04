@@ -149,15 +149,25 @@
     height: 150px;
   }
 
-  .news-card__save-btn {
-    top: 8px;
+  .news-card__btn-save {
+    top: 16px;
+    right: 8px;
+  }
+
+  .news-card__btn-delete {
+    top: 16px;
     right: 8px;
   }
 
   .news-card__save-text {
-    top: 8px;
+    top: 16px;
     right: 55px;
     width: 140px;
+  }
+
+  .news-card__image-keyword {
+    top: 16px;
+    left: 8px;
   }
 
   .news-card__text {
@@ -187,6 +197,14 @@
   .news-card__image {
     width: 288px;
     height: 196px;
+  }
+
+  .news-card__save-text {
+    right: 120px;
+  }
+
+  .news-card__save-text_sign-in {
+    right: 60px;
   }
 
   .news-card__text-title {

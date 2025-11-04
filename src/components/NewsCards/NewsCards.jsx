@@ -39,7 +39,9 @@ function NewsCards({ item }) {
           )}
 
           {isHomePage && !isLoggedIn && (
-            <p className="news-card__save-text">Sign in to save articles</p>
+            <p className="news-card__save-text news-card__save-text_sign-in">
+              Sign in to save articles
+            </p>
           )}
           <button
             className={`news-card__btn ${

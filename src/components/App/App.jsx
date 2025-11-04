@@ -17,7 +17,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoggedInContext from "../../contexts/LoggedInContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
