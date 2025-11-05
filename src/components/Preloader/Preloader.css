@@ -27,3 +27,19 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 1130px) {
+  .preloader-text {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .circle-preloader {
+    top: 5%;
+  }
+
+  .preloader-text {
+    margin-top: 100px;
+  }
+}
