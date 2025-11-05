@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import "./NewsCards.css";
 
-import LoggedInContext from "../../contexts/LoggedInContext";
+import LoggedInContext from "../../contexts/LoggedInContext.js";
 
 function NewsCards({ item }) {
   const location = useLocation();

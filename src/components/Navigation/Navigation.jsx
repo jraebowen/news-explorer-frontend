@@ -5,7 +5,8 @@ import "./Navigation.css";
 
 import logouthome from "../../assets/logout-home.png";
 import logoutnews from "../../assets/logout-saved-news.png";
-import LoggedInContext from "../../contexts/LoggedInContext";
+import LoggedInContext from "../../contexts/LoggedInContext.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function Navigation({
   onLogin,
@@ -18,6 +19,7 @@ function Navigation({
   const isHomePage = location.pathname === "/";
 
   const { isLoggedIn } = useContext(LoggedInContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <nav className="nav">
@@ -68,7 +70,7 @@ function Navigation({
                   }`}
                   onClick={onLogout}
                 >
-                  placeholder
+                  {currentUser.name}
                   <img
                     src={isHomePage ? logouthome : logoutnews}
                     alt="logout icon"
@@ -167,7 +169,7 @@ function Navigation({
                     className="nav__links-logout"
                     onClick={onLogout}
                   >
-                    placeholder
+                    {currentUser.name}
                     <img
                       src={logouthome}
                       alt="logout icon"

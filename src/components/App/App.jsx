@@ -18,7 +18,8 @@ import { searchArticles } from "../../utils/newsApi";
 import { API_KEY } from "../../utils/constants";
 
 //context imports
-import LoggedInContext from "../../contexts/LoggedInContext";
+import LoggedInContext from "../../contexts/LoggedInContext.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function App() {
   //login states
@@ -28,7 +29,7 @@ function App() {
     username: "",
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
@@ -83,61 +84,63 @@ function App() {
   };
 
   return (
-    <LoggedInContext.Provider value={{ isLoggedIn }}>
-      <div className="page">
-        <div className="page__content">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Header
+    <CurrentUserContext.Provider value={{ currentUser }}>
+      <LoggedInContext.Provider value={{ isLoggedIn }}>
+        <div className="page">
+          <div className="page__content">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Header
+                      onLogout={handleLogout}
+                      toggleMobileMenu={toggleMobileMenu}
+                      isMobileMenuOpened={isMobileMenuOpened}
+                      onLogin={handleLoginModal}
+                      activeModal={activeModal}
+                      query={query}
+                      setQuery={setQuery}
+                      onSearch={handleSearch}
+                    ></Header>
+                    {hasSearched && (
+                      <Main
+                        articles={articles}
+                        visibleArticles={visibleArticles}
+                        setVisibleArticles={setVisibleArticles}
+                        onLoad={isLoading}
+                      ></Main>
+                    )}
+                    <About />
+                  </>
+                }
+              />
+              <Route
+                path="/saved-news"
+                element={
+                  <SavedNews
                     onLogout={handleLogout}
                     toggleMobileMenu={toggleMobileMenu}
                     isMobileMenuOpened={isMobileMenuOpened}
-                    onLogin={handleLoginModal}
-                    activeModal={activeModal}
-                    query={query}
-                    setQuery={setQuery}
-                    onSearch={handleSearch}
-                  ></Header>
-                  {hasSearched && (
-                    <Main
-                      articles={articles}
-                      visibleArticles={visibleArticles}
-                      setVisibleArticles={setVisibleArticles}
-                      onLoad={isLoading}
-                    ></Main>
-                  )}
-                  <About />
-                </>
-              }
-            />
-            <Route
-              path="/saved-news"
-              element={
-                <SavedNews
-                  onLogout={handleLogout}
-                  toggleMobileMenu={toggleMobileMenu}
-                  isMobileMenuOpened={isMobileMenuOpened}
-                ></SavedNews>
-              }
-            />
-          </Routes>
-          <Footer></Footer>
+                  ></SavedNews>
+                }
+              />
+            </Routes>
+            <Footer></Footer>
+          </div>
+          <LoginModal
+            isOpen={activeModal === "login-modal"}
+            onClose={handleModalClose}
+            onRegister={handleRegisterModal}
+          ></LoginModal>
+          <RegisterModal
+            isOpen={activeModal === "register-modal"}
+            onClose={handleModalClose}
+            onLogin={handleLoginModal}
+          ></RegisterModal>
         </div>
-        <LoginModal
-          isOpen={activeModal === "login-modal"}
-          onClose={handleModalClose}
-          onRegister={handleRegisterModal}
-        ></LoginModal>
-        <RegisterModal
-          isOpen={activeModal === "register-modal"}
-          onClose={handleModalClose}
-          onLogin={handleLoginModal}
-        ></RegisterModal>
-      </div>
-    </LoggedInContext.Provider>
+      </LoggedInContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
