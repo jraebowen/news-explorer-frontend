@@ -13,20 +13,38 @@ import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 
+//utils imports
+import { searchArticles } from "../../utils/newsApi";
+import { API_KEY } from "../../utils/constants";
+
 //context imports
 import LoggedInContext from "../../contexts/LoggedInContext";
 
 function App() {
+  //login states
+  const [currentUser, setCurrentUser] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
   const [activeModal, setActiveModal] = useState("");
 
+  //article rendering states
+  const [articles, setArticles] = useState([]);
+
+  const [query, setQuery] = useState("");
+
+  //login/logout functions
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
 
+  //modal functions
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
   };
@@ -41,6 +59,18 @@ function App() {
 
   const handleModalClose = () => {
     setActiveModal("");
+  };
+
+  //api functions
+  const handleSearch = (query) => {
+    if (!query) return;
+    searchArticles(query, API_KEY)
+      .then((data) => {
+        setArticles(data.articles);
+      })
+      .catch((err) => {
+        console.error("Failed to search articles: ", err);
+      });
   };
 
   return (
@@ -58,14 +88,15 @@ function App() {
                     isMobileMenuOpened={isMobileMenuOpened}
                     onLogin={handleLoginModal}
                     activeModal={activeModal}
+                    query={query}
+                    setQuery={setQuery}
+                    onSearch={handleSearch}
                   ></Header>
-                  <Main></Main>
+                  <Main articles={articles}></Main>
                   <About />
                 </>
               }
             />
-          </Routes>
-          <Routes>
             <Route
               path="/saved-news"
               element={

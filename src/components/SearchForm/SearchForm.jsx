@@ -1,18 +1,26 @@
 import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm({ query, setQuery, onSearch }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    onSearch(query);
+  };
+
   return (
-    <div className="search-container">
+    <form className="search-container" onSubmit={handleSubmit}>
       <input
         type="search"
         id="search-button"
         className="search-bar"
         placeholder="Enter topic"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <button type="submit" id="search-button" className="search-button">
         Search
       </button>
-    </div>
+    </form>
   );
 }
 

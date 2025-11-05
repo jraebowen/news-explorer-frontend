@@ -19,45 +19,54 @@ function NewsCards({ item }) {
     day: "numeric",
   });
 
-  const capitalSrc = item.source.toUpperCase();
+  const capitalSrc = item.source.name.toUpperCase();
+
+  const articleUrl = item.url;
 
   return (
     <li className="news-card">
-      <div className="news-card__contents">
-        <img
-          src={item.urlToImage}
-          alt={item.title}
-          className="news-card__image"
-        />
-        <div className="news-card__image-content">
-          {!isHomePage && (
-            <p className="news-card__image-keyword">placeholder</p>
-          )}
+      <a
+        href={item.url}
+        target="_blank"
+        className="news-card__link"
+        rel="noopener noreferrer"
+      >
+        <div className="news-card__contents">
+          <img
+            src={item.urlToImage}
+            alt={item.title}
+            className="news-card__image"
+          />
+          <div className="news-card__image-content">
+            {!isHomePage && (
+              <p className="news-card__image-keyword">placeholder</p>
+            )}
 
-          {!isHomePage && isLoggedIn && (
-            <p className="news-card__save-text">Remove from saved</p>
-          )}
+            {!isHomePage && isLoggedIn && (
+              <p className="news-card__save-text">Remove from saved</p>
+            )}
 
-          {isHomePage && !isLoggedIn && (
-            <p className="news-card__save-text news-card__save-text_sign-in">
-              Sign in to save articles
-            </p>
-          )}
-          <button
-            className={`news-card__btn ${
-              isHomePage ? "news-card__btn-save" : "news-card__btn-delete"
-            }`}
-          ></button>
-        </div>
-        <div className="news-card__text">
-          <p className="news-card__text-date">{updatedDate}</p>
-          <p className="news-card__text-title">{item.title}</p>
-          <div className="news-card__positioning-container">
-            <p className="news-card__text-description">{item.description}</p>
-            <p className="news-card__text-source">{capitalSrc}</p>
+            {isHomePage && !isLoggedIn && (
+              <p className="news-card__save-text news-card__save-text_sign-in">
+                Sign in to save articles
+              </p>
+            )}
+            <button
+              className={`news-card__btn ${
+                isHomePage ? "news-card__btn-save" : "news-card__btn-delete"
+              }`}
+            ></button>
+          </div>
+          <div className="news-card__text">
+            <p className="news-card__text-date">{updatedDate}</p>
+            <p className="news-card__text-title">{item.title}</p>
+            <div className="news-card__positioning-container">
+              <p className="news-card__text-description">{item.description}</p>
+              <p className="news-card__text-source">{capitalSrc}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     </li>
   );
 }

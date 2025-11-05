@@ -9,6 +9,9 @@ function Header({
   toggleMobileMenu,
   isMobileMenuOpened,
   activeModal,
+  query,
+  setQuery,
+  onSearch,
 }) {
   return (
     <header className="header">
@@ -28,7 +31,11 @@ function Header({
             Find the latest news on any topic and save them in your personal
             account.
           </p>
-          <SearchForm></SearchForm>
+          <SearchForm
+            query={query}
+            setQuery={setQuery}
+            onSearch={onSearch}
+          ></SearchForm>
         </div>
       </div>
     </header>
