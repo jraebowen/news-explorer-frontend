@@ -26,7 +26,7 @@ function NewsCards({ item }) {
   return (
     <li className="news-card">
       <a
-        href={item.url}
+        href={articleUrl}
         target="_blank"
         className="news-card__link"
         rel="noopener noreferrer"

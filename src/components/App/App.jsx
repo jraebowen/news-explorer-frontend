@@ -39,6 +39,10 @@ function App() {
 
   const [query, setQuery] = useState("");
 
+  const [hasSearched, setHasSearched] = useState(false);
+
+  const [visibleArticles, setVisibleArticles] = useState(3);
+
   //login/logout functions
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -64,6 +68,7 @@ function App() {
   //api functions
   const handleSearch = (query) => {
     if (!query) return;
+    setHasSearched(true);
     searchArticles(query, API_KEY)
       .then((data) => {
         setArticles(data.articles);
@@ -92,7 +97,13 @@ function App() {
                     setQuery={setQuery}
                     onSearch={handleSearch}
                   ></Header>
-                  <Main articles={articles}></Main>
+                  {hasSearched && (
+                    <Main
+                      articles={articles}
+                      visibleArticles={visibleArticles}
+                      setVisibleArticles={setVisibleArticles}
+                    ></Main>
+                  )}
                   <About />
                 </>
               }
