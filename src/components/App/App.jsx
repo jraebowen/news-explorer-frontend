@@ -43,6 +43,8 @@ function App() {
 
   const [visibleArticles, setVisibleArticles] = useState(3);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   //login/logout functions
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -69,13 +71,15 @@ function App() {
   const handleSearch = (query) => {
     if (!query) return;
     setHasSearched(true);
+    setIsLoading(true);
     searchArticles(query, API_KEY)
       .then((data) => {
         setArticles(data.articles);
       })
       .catch((err) => {
         console.error("Failed to search articles: ", err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -102,6 +106,7 @@ function App() {
                       articles={articles}
                       visibleArticles={visibleArticles}
                       setVisibleArticles={setVisibleArticles}
+                      onLoad={isLoading}
                     ></Main>
                   )}
                   <About />

@@ -1,8 +1,9 @@
 import "./Main.css";
 
 import NewsCardList from "../NewsCardList/NewsCardList";
+import Preloader from "../Preloader/Preloader";
 
-function Main({ articles, visibleArticles, setVisibleArticles }) {
+function Main({ articles, visibleArticles, setVisibleArticles, onLoad }) {
   const renderedArticles = articles.slice(0, visibleArticles);
 
   const handleShowMore = () => {
@@ -14,12 +15,18 @@ function Main({ articles, visibleArticles, setVisibleArticles }) {
   return (
     <main className="main">
       <div className="main__content">
-        <p className="main__title">Search Results</p>
-        <NewsCardList renderedArticles={renderedArticles}></NewsCardList>
-        {renderedArticles.length < totalArticles && (
-          <button className="main__btn-show-more" onClick={handleShowMore}>
-            Show more
-          </button>
+        {onLoad ? (
+          <Preloader />
+        ) : (
+          <>
+            <p className="main__title">Search Results</p>
+            <NewsCardList renderedArticles={renderedArticles}></NewsCardList>
+            {renderedArticles.length < totalArticles && (
+              <button className="main__btn-show-more" onClick={handleShowMore}>
+                Show more
+              </button>
+            )}
+          </>
         )}
       </div>
     </main>
