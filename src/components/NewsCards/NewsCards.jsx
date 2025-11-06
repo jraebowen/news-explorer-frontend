@@ -3,13 +3,16 @@ import { useLocation } from "react-router-dom";
 
 import "./NewsCards.css";
 
-import LoggedInContext from "../../contexts/LoggedInContext.js";
+import LoggedInContext from "../../contexts/LoggedInContext";
 
-function NewsCards({ item }) {
+function NewsCards({ item, onArticleSave, onArticleDelete, savedArticles }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   const { isLoggedIn } = useContext(LoggedInContext);
+
+  const isSaved = savedArticles.some((a) => a.url === item.url);
+  console.log("savedArticles in NewsCards:", savedArticles);
 
   const date = item.publishedAt;
   const dateObject = new Date(date);
@@ -53,8 +56,20 @@ function NewsCards({ item }) {
             )}
             <button
               className={`news-card__btn ${
-                isHomePage ? "news-card__btn-save" : "news-card__btn-delete"
+                isHomePage
+                  ? isSaved
+                    ? "news-card__btn-saved"
+                    : "news-card__btn-save"
+                  : "news-card__btn-delete"
               }`}
+              onClick={(e) => {
+                e.preventDefault();
+                if (isSaved) {
+                  onArticleDelete(item);
+                } else {
+                  onArticleSave(item);
+                }
+              }}
             ></button>
           </div>
           <div className="news-card__text">

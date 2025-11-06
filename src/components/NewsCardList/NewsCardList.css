@@ -8,6 +8,7 @@
   gap: 16px;
   justify-content: center;
   margin: 0;
+  padding: 0;
 }
 
 .news__saved-news {

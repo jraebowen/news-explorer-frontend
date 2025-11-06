@@ -3,7 +3,15 @@ import "./Main.css";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import Preloader from "../Preloader/Preloader";
 
-function Main({ articles, visibleArticles, setVisibleArticles, onLoad }) {
+function Main({
+  articles,
+  visibleArticles,
+  setVisibleArticles,
+  onLoad,
+  savedArticles,
+  onArticleDelete,
+  onArticleSave,
+}) {
   const renderedArticles = articles.slice(0, visibleArticles);
 
   const handleShowMore = () => {
@@ -20,7 +28,12 @@ function Main({ articles, visibleArticles, setVisibleArticles, onLoad }) {
         ) : (
           <>
             <p className="main__title">Search Results</p>
-            <NewsCardList renderedArticles={renderedArticles}></NewsCardList>
+            <NewsCardList
+              renderedArticles={renderedArticles}
+              savedArticles={savedArticles}
+              onArticleSave={onArticleSave}
+              onArticleDelete={onArticleDelete}
+            ></NewsCardList>
             {renderedArticles.length < totalArticles && (
               <button className="main__btn-show-more" onClick={handleShowMore}>
                 Show more

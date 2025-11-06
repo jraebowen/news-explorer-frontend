@@ -78,6 +78,10 @@
   background-image: url(../../assets/save-icon-hover.png);
 }
 
+.news-card__btn-saved {
+  background-image: url(../../assets/save-icon-saved.png);
+}
+
 .news-card__btn-delete {
   background-image: url(../../assets/delete-icon.png);
 }

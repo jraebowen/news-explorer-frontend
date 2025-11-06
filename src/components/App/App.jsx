@@ -46,6 +46,8 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [savedArticles, setSavedArticles] = useState([]);
+
   //login/logout functions
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -66,6 +68,15 @@ function App() {
 
   const handleModalClose = () => {
     setActiveModal("");
+  };
+
+  //article functions
+  const handleArticleSave = (item) => {
+    setSavedArticles((prev) => [...prev, item]);
+  };
+
+  const handleArticleDelete = (item) => {
+    setSavedArticles((prev) => prev.filter((a) => a.url !== item.url));
   };
 
   //api functions
@@ -109,6 +120,9 @@ function App() {
                         visibleArticles={visibleArticles}
                         setVisibleArticles={setVisibleArticles}
                         onLoad={isLoading}
+                        savedArticles={savedArticles}
+                        onArticleSave={handleArticleSave}
+                        onArticleDelete={handleArticleDelete}
                       ></Main>
                     )}
                     <About />
@@ -122,6 +136,9 @@ function App() {
                     onLogout={handleLogout}
                     toggleMobileMenu={toggleMobileMenu}
                     isMobileMenuOpened={isMobileMenuOpened}
+                    savedArticles={savedArticles}
+                    onArticleSave={handleArticleSave}
+                    onArticleDelete={handleArticleDelete}
                   ></SavedNews>
                 }
               />
