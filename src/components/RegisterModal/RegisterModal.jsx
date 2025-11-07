@@ -1,12 +1,27 @@
-import { useContext } from "react";
+import { useEffect } from "react";
 
 import "./RegisterModal.css";
 
+import { useFormandValidation } from "../../hooks/useFormandValidation.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    setValues,
+    handleResetValues,
+  } = useFormandValidation();
+
+  //clear results when opening modal
+  useEffect(() => {
+    if (isOpen) {
+      handleResetValues();
+      setValues({ email: "", password: "", username: "" });
+    }
+  }, [isOpen, handleResetValues, setValues]);
 
   //form submission
   const handleSubmit = (e) => {
@@ -19,6 +34,7 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      onValidation={isValid}
       title="Sign up"
       buttonText="Sign up"
       secondaryButton={
@@ -44,13 +60,20 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
           className="form__input"
           id="email-login-input"
           placeholder="Enter email"
-          value={currentUser.email}
+          onChange={handleChange}
+          value={values.email || ""}
           required
         />
+        {errors.email && (
+          <span className="form__input-error">Invalid email address</span>
+        )}
       </fieldset>
       <fieldset className="form__fieldset">
         <label htmlFor="password-login-input" className="form__label">
           Password
+          {errors.password && (
+            <span className="form__input-error">{errors.password}</span>
+          )}
         </label>
         <input
           type="password"
@@ -58,13 +81,17 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
           className="form__input"
           id="password-login-input"
           placeholder="Enter password"
-          value={currentUser.password}
+          onChange={handleChange}
+          value={values.password || ""}
           required
         />
       </fieldset>
       <fieldset className="form__fieldset">
         <label htmlFor="username-login-input" className="form__label">
           Username
+          {errors.username && (
+            <span className="form__input-error">{errors.username}</span>
+          )}
         </label>
         <input
           type="username"
@@ -72,9 +99,15 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
           className="form__input"
           id="username-login-input"
           placeholder="Enter your username"
-          value={currentUser.username}
+          onChange={handleChange}
+          value={values.username || ""}
           required
         />
+        {/* {errors.email && (
+          <span className="form__input-error form__input-error_register-email">
+            This email is not available
+          </span>
+        )} */}
       </fieldset>
     </ModalWithForm>
   );

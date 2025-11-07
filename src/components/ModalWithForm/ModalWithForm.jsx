@@ -10,6 +10,7 @@ function ModalWithForm({
   buttonText,
   secondaryButton,
   onSubmit,
+  isValid,
 }) {
   escModalClose(isOpen, onClose);
 
@@ -25,7 +26,11 @@ function ModalWithForm({
         <form className="form" onSubmit={onSubmit}>
           {children}
         </form>
-        <button type="submit" className="form-modal__button">
+        <button
+          type="submit"
+          className="form-modal__button"
+          disabled={!isValid}
+        >
           {buttonText}
         </button>
         {secondaryButton}

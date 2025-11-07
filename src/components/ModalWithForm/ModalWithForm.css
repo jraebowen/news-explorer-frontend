@@ -64,6 +64,20 @@
   border-radius: 100px;
   box-shadow: 0 5px 15px 0 rgba(14, 26, 57, 0.2);
   margin: 8px auto 16px auto;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.form-modal__button:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.form-modal__button:disabled {
+  background-color: rgba(230, 232, 235, 1);
+  color: rgba(182, 188, 191, 1);
+  box-shadow: none;
+  cursor: auto;
+  opacity: 100%;
 }
 
 @media screen and (max-width: 550px) {

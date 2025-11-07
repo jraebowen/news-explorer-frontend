@@ -31,6 +31,7 @@
 .form__input::placeholder {
   opacity: 20%;
 }
+
 .form-modal__secondary-button_text {
   color: rgba(0, 0, 0, 1);
   font-family: "Inter", Helvetica, Arial, sans-serif;
@@ -52,6 +53,17 @@
 .form-modal__secondary-button:hover {
   color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
+}
+
+.form__input-error {
+  color: rgba(255, 0, 0, 1);
+  font-size: 12px;
+  padding-top: 3px;
+}
+
+.form__input-error_register-email {
+  align-self: center;
+  padding-top: 12px;
 }
 
 @media screen and (max-width: 550px) {

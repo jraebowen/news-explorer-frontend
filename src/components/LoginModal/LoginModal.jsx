@@ -1,12 +1,33 @@
+import { useEffect } from "react";
+
 import "./LoginModal.css";
 
+import { useFormandValidation } from "../../hooks/useFormandValidation.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function LoginModal({ isOpen, onClose, onRegister }) {
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    setValues,
+    handleResetValues,
+  } = useFormandValidation();
+
+  //clear results when opening modal
+  useEffect(() => {
+    if (isOpen) {
+      handleResetValues();
+      setValues({ email: "", password: "", username: "" });
+    }
+  }, [isOpen, handleResetValues, setValues]);
+
   return (
     <ModalWithForm
       isOpen={isOpen}
       onClose={onClose}
+      onValidation={isValid}
       title="Sign in"
       buttonText="Sign in"
       secondaryButton={
@@ -32,8 +53,13 @@ function LoginModal({ isOpen, onClose, onRegister }) {
           className="form__input"
           id="email-login-input"
           placeholder="Enter email"
+          onChange={handleChange}
+          value={values.email || ""}
           required
         />
+        {errors.email && (
+          <span className="form__input-error">Invalid email address</span>
+        )}
       </fieldset>
       <fieldset className="form__fieldset">
         <label htmlFor="password-login-input" className="form__label">
@@ -45,8 +71,13 @@ function LoginModal({ isOpen, onClose, onRegister }) {
           className="form__input"
           id="password-login-input"
           placeholder="Enter password"
+          onChange={handleChange}
+          value={values.password || ""}
           required
         />
+        {errors.password && (
+          <span className="form__input-error">Invalid password</span>
+        )}
       </fieldset>
     </ModalWithForm>
   );
