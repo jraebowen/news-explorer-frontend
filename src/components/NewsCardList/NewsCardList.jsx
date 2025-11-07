@@ -9,6 +9,7 @@ function NewsCardList({
   savedArticles,
   onArticleSave,
   onArticleDelete,
+  query,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -26,6 +27,7 @@ function NewsCardList({
                 key={item.content}
                 onArticleSave={onArticleSave}
                 savedArticles={savedArticles}
+                query={query}
               ></NewsCards>
             );
           })}
@@ -37,6 +39,7 @@ function NewsCardList({
                 key={item.content}
                 onArticleDelete={onArticleDelete}
                 savedArticles={savedArticles}
+                query={query}
               ></NewsCards>
             );
           })}

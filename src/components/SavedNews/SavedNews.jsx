@@ -11,6 +11,7 @@ function SavedNews({
   savedArticles,
   onArticleSave,
   onArticleDelete,
+  query,
 }) {
   return (
     <section className="saved-news">

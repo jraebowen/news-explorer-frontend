@@ -71,8 +71,8 @@ function App() {
   };
 
   //article functions
-  const handleArticleSave = (item) => {
-    setSavedArticles((prev) => [...prev, item]);
+  const handleArticleSave = (item, query) => {
+    setSavedArticles((prev) => [...prev, { ...item, keyword: query }]);
   };
 
   const handleArticleDelete = (item) => {
@@ -93,6 +93,21 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   };
+
+  //registration funciton
+  const handleRegistration = (newUser) => {
+    return signUp(newUser.email, newUser.password, newUser.username)
+      .then(() => {
+        return signIn(newUser.email, newUser.password);
+      })
+      .then((userData) => {
+        setCurrentUser(userData);
+        setIsLoggedIn(true);
+      });
+  };
+
+  //login function
+  const handleLogin = (email, password) => {};
 
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
@@ -123,6 +138,7 @@ function App() {
                         savedArticles={savedArticles}
                         onArticleSave={handleArticleSave}
                         onArticleDelete={handleArticleDelete}
+                        query={query}
                       ></Main>
                     )}
                     <About />
@@ -139,6 +155,7 @@ function App() {
                     savedArticles={savedArticles}
                     onArticleSave={handleArticleSave}
                     onArticleDelete={handleArticleDelete}
+                    query={query}
                   ></SavedNews>
                 }
               />
@@ -154,6 +171,7 @@ function App() {
             isOpen={activeModal === "register-modal"}
             onClose={handleModalClose}
             onLogin={handleLoginModal}
+            handleRegistration={handleRegistration}
           ></RegisterModal>
         </div>
       </LoggedInContext.Provider>

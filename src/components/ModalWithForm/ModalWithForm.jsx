@@ -9,6 +9,7 @@ function ModalWithForm({
   children,
   buttonText,
   secondaryButton,
+  onSubmit,
 }) {
   escModalClose(isOpen, onClose);
 
@@ -21,7 +22,9 @@ function ModalWithForm({
           onClick={onClose}
         />
         <h2 className="form-modal__title">{title}</h2>
-        <form className="form">{children}</form>
+        <form className="form" onSubmit={onSubmit}>
+          {children}
+        </form>
         <button type="submit" className="form-modal__button">
           {buttonText}
         </button>

@@ -5,7 +5,13 @@ import "./NewsCards.css";
 
 import LoggedInContext from "../../contexts/LoggedInContext";
 
-function NewsCards({ item, onArticleSave, onArticleDelete, savedArticles }) {
+function NewsCards({
+  item,
+  onArticleSave,
+  onArticleDelete,
+  savedArticles,
+  query,
+}) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -42,7 +48,7 @@ function NewsCards({ item, onArticleSave, onArticleDelete, savedArticles }) {
           />
           <div className="news-card__image-content">
             {!isHomePage && (
-              <p className="news-card__image-keyword">placeholder</p>
+              <p className="news-card__image-keyword">{item.keyword}</p>
             )}
 
             {!isHomePage && isLoggedIn && (
@@ -67,7 +73,7 @@ function NewsCards({ item, onArticleSave, onArticleDelete, savedArticles }) {
                 if (isSaved) {
                   onArticleDelete(item);
                 } else {
-                  onArticleSave(item);
+                  onArticleSave(item, query);
                 }
               }}
             ></button>

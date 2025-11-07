@@ -1,12 +1,24 @@
+import { useContext } from "react";
+
 import "./RegisterModal.css";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-function RegisterModal({ isOpen, onClose, onLogin }) {
+function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
+  const { currentUser } = useContext(CurrentUserContext);
+
+  //form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleRegistration(values);
+  };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
       title="Sign up"
       buttonText="Sign up"
       secondaryButton={
@@ -32,6 +44,7 @@ function RegisterModal({ isOpen, onClose, onLogin }) {
           className="form__input"
           id="email-login-input"
           placeholder="Enter email"
+          value={currentUser.email}
           required
         />
       </fieldset>
@@ -45,6 +58,7 @@ function RegisterModal({ isOpen, onClose, onLogin }) {
           className="form__input"
           id="password-login-input"
           placeholder="Enter password"
+          value={currentUser.password}
           required
         />
       </fieldset>
@@ -58,6 +72,7 @@ function RegisterModal({ isOpen, onClose, onLogin }) {
           className="form__input"
           id="username-login-input"
           placeholder="Enter your username"
+          value={currentUser.username}
           required
         />
       </fieldset>
