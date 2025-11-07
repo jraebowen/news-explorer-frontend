@@ -24,6 +24,13 @@
   text-align: center;
   margin: 0;
 }
+.news-card-list__error {
+  color: #b6bcbf;
+  font-family: "Roboto Slab", "Times New Roman", Times, serif;
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+}
 
 .news-card-list__no-saved {
   color: #b6bcbf;

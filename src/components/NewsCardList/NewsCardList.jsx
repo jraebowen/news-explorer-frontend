@@ -10,6 +10,7 @@ function NewsCardList({
   onArticleSave,
   onArticleDelete,
   query,
+  errorMessage,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -19,7 +20,10 @@ function NewsCardList({
       className={`news ${isHomePage ? "news__home" : "news__saved-news"}`}
     >
       <ul className="news-card-list">
-        {isHomePage && renderedArticles.length === 0 && (
+        {errorMessage && (
+          <p className="news-card-list__error">{errorMessage}</p>
+        )}
+        {isHomePage && renderedArticles.length === 0 && !errorMessage && (
           <p className="news-card-list__no-match">Nothing Found</p>
         )}
         {!isHomePage && savedArticles.length === 0 && (

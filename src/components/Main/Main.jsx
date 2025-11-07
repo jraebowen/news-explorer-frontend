@@ -12,6 +12,7 @@ function Main({
   onArticleDelete,
   onArticleSave,
   query,
+  errorMessage,
 }) {
   const renderedArticles = articles.slice(0, visibleArticles);
 
@@ -35,6 +36,7 @@ function Main({
               onArticleSave={onArticleSave}
               onArticleDelete={onArticleDelete}
               query={query}
+              errorMessage={errorMessage}
             ></NewsCardList>
             {renderedArticles.length < totalArticles && (
               <button className="main__btn-show-more" onClick={handleShowMore}>

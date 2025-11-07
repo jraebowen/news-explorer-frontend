@@ -48,6 +48,8 @@ function App() {
 
   const [savedArticles, setSavedArticles] = useState([]);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   //login/logout functions
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -84,11 +86,15 @@ function App() {
     if (!query) return;
     setHasSearched(true);
     setIsLoading(true);
+    setErrorMessage("");
     searchArticles(query, API_KEY)
       .then((data) => {
         setArticles(data.articles);
       })
       .catch((err) => {
+        setErrorMessage(
+          "Sorry, something went wrong during the request. Please try again later."
+        );
         console.error("Failed to search articles: ", err);
       })
       .finally(() => setIsLoading(false));
@@ -139,6 +145,7 @@ function App() {
                         onArticleSave={handleArticleSave}
                         onArticleDelete={handleArticleDelete}
                         query={query}
+                        errorMessage={errorMessage}
                       ></Main>
                     )}
                     <About />
