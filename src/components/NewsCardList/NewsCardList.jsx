@@ -19,6 +19,13 @@ function NewsCardList({
       className={`news ${isHomePage ? "news__home" : "news__saved-news"}`}
     >
       <ul className="news-card-list">
+        {isHomePage && renderedArticles.length === 0 && (
+          <p className="news-card-list__no-match">Nothing Found</p>
+        )}
+        {!isHomePage && savedArticles.length === 0 && (
+          <p className="news-card-list__no-saved">No Saved Articles</p>
+        )}
+
         {isHomePage &&
           renderedArticles.map((item) => {
             return (
