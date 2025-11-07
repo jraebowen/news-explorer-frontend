@@ -1,9 +1,8 @@
 import "./SearchForm.css";
 
-function SearchForm({ query, setQuery, onSearch }) {
+function SearchForm({ query, setQuery, onSearch, errorMessage }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!query.trim()) return;
     onSearch(query);
   };
 
@@ -13,7 +12,7 @@ function SearchForm({ query, setQuery, onSearch }) {
         type="search"
         id="search-button"
         className="search-bar"
-        placeholder="Enter topic"
+        placeholder={errorMessage || "Enter topic"}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

@@ -12,6 +12,7 @@ function Header({
   query,
   setQuery,
   onSearch,
+  errorMessage,
 }) {
   return (
     <header className="header">
@@ -35,6 +36,7 @@ function Header({
             query={query}
             setQuery={setQuery}
             onSearch={onSearch}
+            errorMessage={errorMessage}
           ></SearchForm>
         </div>
       </div>

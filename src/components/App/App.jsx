@@ -29,7 +29,7 @@ function App() {
     username: "",
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
@@ -83,7 +83,10 @@ function App() {
 
   //api functions
   const handleSearch = (query) => {
-    if (!query) return;
+    if (!query) {
+      setErrorMessage("Please enter a keyword");
+      return;
+    }
     setHasSearched(true);
     setIsLoading(true);
     setErrorMessage("");
@@ -134,6 +137,7 @@ function App() {
                       query={query}
                       setQuery={setQuery}
                       onSearch={handleSearch}
+                      errorMessage={errorMessage}
                     ></Header>
                     {hasSearched && (
                       <Main
