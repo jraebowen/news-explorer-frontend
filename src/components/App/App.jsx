@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 //css import
 import "./App.css";
@@ -148,9 +148,10 @@ function App() {
       })
       .catch(console.error);
   };
-
+  const navigate = useNavigate();
   const handleLogout = () => {
     removeToken();
+    navigate("/");
     setIsLoggedIn(false);
   };
 
