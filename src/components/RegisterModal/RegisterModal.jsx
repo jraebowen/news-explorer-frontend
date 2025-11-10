@@ -51,14 +51,14 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
       }
     >
       <fieldset className="form__fieldset">
-        <label htmlFor="email-login-input" className="form__label">
+        <label htmlFor="email-register-input" className="form__label">
           Email
         </label>
         <input
           type="email"
           name="email"
           className="form__input"
-          id="email-login-input"
+          id="email-register-input"
           placeholder="Enter email"
           onChange={handleChange}
           value={values.email || ""}
@@ -69,14 +69,14 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
         )}
       </fieldset>
       <fieldset className="form__fieldset">
-        <label htmlFor="password-login-input" className="form__label">
+        <label htmlFor="password-register-input" className="form__label">
           Password
         </label>
         <input
           type="password"
           name="password"
           className="form__input"
-          id="password-login-input"
+          id="password-register-input"
           placeholder="Enter password"
           onChange={handleChange}
           value={values.password || ""}
@@ -87,7 +87,7 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
         )}
       </fieldset>
       <fieldset className="form__fieldset">
-        <label htmlFor="username-login-input" className="form__label">
+        <label htmlFor="username-register-input" className="form__label">
           Username
         </label>
 
@@ -95,7 +95,7 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
           type="username"
           name="username"
           className="form__input"
-          id="username-login-input"
+          id="username-register-input"
           placeholder="Enter your username"
           onChange={handleChange}
           value={values.username || ""}

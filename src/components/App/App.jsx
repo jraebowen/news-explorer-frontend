@@ -53,11 +53,6 @@ function App() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  //login/logout functions
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
   //modal functions
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
@@ -152,6 +147,11 @@ function App() {
         handleModalClose();
       })
       .catch(console.error);
+  };
+
+  const handleLogout = () => {
+    removeToken();
+    setIsLoggedIn(false);
   };
 
   return (

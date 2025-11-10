@@ -10,7 +10,6 @@ function SearchForm({ query, setQuery, onSearch, errorMessage }) {
     <form className="search-container" onSubmit={handleSubmit}>
       <input
         type="search"
-        id="search-button"
         className="search-bar"
         placeholder={errorMessage || "Enter topic"}
         value={query}
