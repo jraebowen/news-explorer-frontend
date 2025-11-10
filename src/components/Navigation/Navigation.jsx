@@ -70,7 +70,7 @@ function Navigation({
                   }`}
                   onClick={onLogout}
                 >
-                  {currentUser.name}
+                  {currentUser.username}
                   <img
                     src={isHomePage ? logouthome : logoutnews}
                     alt="logout icon"

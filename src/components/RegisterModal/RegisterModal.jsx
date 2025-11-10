@@ -34,7 +34,7 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      onValidation={isValid}
+      isValid={isValid}
       title="Sign up"
       buttonText="Sign up"
       secondaryButton={

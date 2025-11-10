@@ -18,7 +18,6 @@ function NewsCards({
   const { isLoggedIn } = useContext(LoggedInContext);
 
   const isSaved = savedArticles.some((a) => a.url === item.url);
-  console.log("savedArticles in NewsCards:", savedArticles);
 
   const date = item.publishedAt;
   const dateObject = new Date(date);

@@ -7,7 +7,7 @@ const newsApiBaseUrl =
 
 export const signUp = (email, password, username) => {
   return new Promise((resolve, reject) => {
-    resolve({});
+    resolve({ email, password, username });
   });
 };
 
@@ -20,7 +20,11 @@ export const signIn = (email, password) => {
 export const checkToken = (token) => {
   return new Promise((resolve, reject) => {
     resolve({
-      user: { name: "Test User", email: "test@email.com", _id: "test-id" },
+      user: {
+        username: "fake user",
+        email: "fake@example,com",
+        _id: "fake-id",
+      },
     });
   });
 };

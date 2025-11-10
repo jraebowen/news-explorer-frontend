@@ -5,7 +5,7 @@ import "./LoginModal.css";
 import { useFormandValidation } from "../../hooks/useFormandValidation.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, onClose, onRegister }) {
+function LoginModal({ isOpen, onClose, onRegister, handleLogin }) {
   const {
     values,
     handleChange,
@@ -23,11 +23,18 @@ function LoginModal({ isOpen, onClose, onRegister }) {
     }
   }, [isOpen, handleResetValues, setValues]);
 
+  //form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(values);
+  };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
       onClose={onClose}
-      onValidation={isValid}
+      isValid={isValid}
+      onSubmit={handleSubmit}
       title="Sign in"
       buttonText="Sign in"
       secondaryButton={

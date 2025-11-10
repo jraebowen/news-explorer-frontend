@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 //css import
@@ -16,6 +16,8 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 //utils imports
 import { searchArticles } from "../../utils/newsApi";
 import { API_KEY } from "../../utils/constants";
+import * as auth from "../../utils/auth";
+import { setToken, getToken, removeToken } from "../../utils/token";
 
 //context imports
 import LoggedInContext from "../../contexts/LoggedInContext.js";
@@ -103,20 +105,53 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  //registration funciton
+  //checking for token on page load
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      return;
+    }
+    auth.checkToken(jwt).then(({ username, email }) => {
+      setIsLoggedIn(true);
+      setCurrentUser({ username, email });
+    });
+  }, []);
+
+  //registration function
   const handleRegistration = (newUser) => {
-    return signUp(newUser.email, newUser.password, newUser.username)
-      .then(() => {
-        return signIn(newUser.email, newUser.password);
+    return auth
+      .signUp(newUser.email, newUser.password, newUser.username)
+      .then((user) => {
+        return auth.signIn(newUser.email, newUser.password);
+      })
+      .then((res) => {
+        if (res.token) {
+          setToken(res.token);
+        }
+        return auth.checkToken(res.token);
       })
       .then((userData) => {
-        setCurrentUser(userData);
+        setCurrentUser(userData.user);
         setIsLoggedIn(true);
-      });
+        handleModalClose();
+      })
+      .catch(console.error);
   };
 
   //login function
-  const handleLogin = (email, password) => {};
+  const handleLogin = (email, password) => {
+    if (!email || !password) {
+      return;
+    }
+    const makeRequest = () => {
+      return auth.signIn(email, password).then((data) => {
+        if (data.jwt) {
+          setToken(data.jwt);
+        }
+      });
+    };
+    handleSubmit(makeRequest);
+  };
 
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
@@ -177,6 +212,7 @@ function App() {
             isOpen={activeModal === "login-modal"}
             onClose={handleModalClose}
             onRegister={handleRegisterModal}
+            handleLogin={handleLogin}
           ></LoginModal>
           <RegisterModal
             isOpen={activeModal === "register-modal"}

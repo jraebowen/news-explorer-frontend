@@ -23,12 +23,18 @@ function SavedNewsHeader({ savedArticles }) {
     } others`;
   }
 
+  const articleText =
+    savedArticles.length === 1 ? "saved article" : "saved articles";
+
   return (
     <section className="saved-news-header">
       <div className="saved-news-header__content">
         <p className="saved-news__title">Saved articles</p>
         <p className="saved-news__details">
-          {currentUser.username}, you have {savedArticles.length} saved articles
+          {keywordCount === 1
+            ? `${currentUser.username}, you have ${savedArticles.length} ${articleText}`
+            : `${currentUser.username}, you
+          have ${savedArticles.length} ${articleText}}`}
         </p>
         <p className="saved-news__keywords">By keywords: {keywordDisplay}</p>
       </div>
