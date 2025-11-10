@@ -21,8 +21,8 @@ export const checkToken = (token) => {
   return new Promise((resolve, reject) => {
     resolve({
       user: {
-        username: "fake user",
-        email: "fake@example,com",
+        username: "Test User",
+        email: "fake@example.com",
         _id: "fake-id",
       },
     });

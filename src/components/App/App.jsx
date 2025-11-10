@@ -134,22 +134,20 @@ function App() {
   };
 
   //login function
-  const handleLogin = (email, password) => {
+  const handleLogin = ({ email, password }) => {
     if (!email || !password) {
       return;
     }
     return auth
       .signIn(email, password)
       .then((data) => {
-        console.log(data);
-        if (data.jwt) {
-          setToken(data.jwt);
+        if (data.token) {
+          setToken(data.token);
           return auth.checkToken(data.token);
         }
       })
       .then((data) => {
         setCurrentUser(data.user);
-
         setIsLoggedIn(true);
         handleModalClose();
       })
