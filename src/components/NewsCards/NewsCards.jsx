@@ -69,6 +69,7 @@ function NewsCards({
               }`}
               onClick={(e) => {
                 e.preventDefault();
+                if (!isLoggedIn) return;
                 if (isSaved) {
                   onArticleDelete(item);
                 } else {
