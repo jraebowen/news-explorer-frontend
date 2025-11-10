@@ -80,6 +80,8 @@
 
 .news-card__btn-saved {
   background-image: url(../../assets/save-icon-saved.png);
+  top: 12px;
+  right: 12px;
 }
 
 .news-card__btn-delete {

@@ -61,7 +61,9 @@ function NewsCards({
             )}
             <button
               className={`news-card__btn ${
-                isHomePage
+                !isLoggedIn
+                  ? "news-card__btn-save"
+                  : isHomePage
                   ? isSaved
                     ? "news-card__btn-saved"
                     : "news-card__btn-save"
