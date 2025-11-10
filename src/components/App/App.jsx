@@ -12,6 +12,7 @@ import SavedNews from "../SavedNews/SavedNews";
 import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 
 //utils imports
 import { searchArticles } from "../../utils/newsApi";
@@ -70,6 +71,10 @@ function App() {
     setActiveModal("register-modal");
   };
 
+  const handleConfirmationModal = () => {
+    setActiveModal("confirmation-modal");
+  };
+
   const handleModalClose = () => {
     setActiveModal("");
   };
@@ -105,35 +110,25 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  //checking for token on page load
-  useEffect(() => {
-    const jwt = getToken();
-    if (!jwt) {
-      return;
-    }
-    auth.checkToken(jwt).then(({ username, email }) => {
-      setIsLoggedIn(true);
-      setCurrentUser({ username, email });
-    });
-  }, []);
+  //checking for token on page load - hold for backend portion
+  // useEffect(() => {
+  //   const jwt = getToken();
+  //   if (!jwt) {
+  //     return;
+  //   }
+  //   auth.checkToken(jwt).then(({ user }) => {
+  //     setIsLoggedIn(true);
+  //     setCurrentUser(user);
+  //   });
+  // }, []);
 
   //registration function
   const handleRegistration = (newUser) => {
     return auth
       .signUp(newUser.email, newUser.password, newUser.username)
-      .then((user) => {
-        return auth.signIn(newUser.email, newUser.password);
-      })
-      .then((res) => {
-        if (res.token) {
-          setToken(res.token);
-        }
-        return auth.checkToken(res.token);
-      })
-      .then((userData) => {
-        setCurrentUser(userData.user);
-        setIsLoggedIn(true);
+      .then(() => {
         handleModalClose();
+        handleConfirmationModal();
       })
       .catch(console.error);
   };
@@ -143,14 +138,22 @@ function App() {
     if (!email || !password) {
       return;
     }
-    const makeRequest = () => {
-      return auth.signIn(email, password).then((data) => {
+    return auth
+      .signIn(email, password)
+      .then((data) => {
+        console.log(data);
         if (data.jwt) {
           setToken(data.jwt);
+          return auth.checkToken(data.token);
         }
-      });
-    };
-    handleSubmit(makeRequest);
+      })
+      .then((data) => {
+        setCurrentUser(data.user);
+
+        setIsLoggedIn(true);
+        handleModalClose();
+      })
+      .catch(console.error);
   };
 
   return (
@@ -220,6 +223,11 @@ function App() {
             onLogin={handleLoginModal}
             handleRegistration={handleRegistration}
           ></RegisterModal>
+          <ConfirmationModal
+            isOpen={activeModal === "confirmation-modal"}
+            onClose={handleModalClose}
+            onLogin={handleLoginModal}
+          ></ConfirmationModal>
         </div>
       </LoggedInContext.Provider>
     </CurrentUserContext.Provider>

@@ -71,9 +71,6 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
       <fieldset className="form__fieldset">
         <label htmlFor="password-login-input" className="form__label">
           Password
-          {errors.password && (
-            <span className="form__input-error">{errors.password}</span>
-          )}
         </label>
         <input
           type="password"
@@ -85,14 +82,15 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
           value={values.password || ""}
           required
         />
+        {errors.password && (
+          <span className="form__input-error">{errors.password}</span>
+        )}
       </fieldset>
       <fieldset className="form__fieldset">
         <label htmlFor="username-login-input" className="form__label">
           Username
-          {errors.username && (
-            <span className="form__input-error">{errors.username}</span>
-          )}
         </label>
+
         <input
           type="username"
           name="username"
@@ -103,6 +101,9 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
           value={values.username || ""}
           required
         />
+        {errors.username && (
+          <span className="form__input-error">{errors.username}</span>
+        )}
         {/* {errors.email && (
           <span className="form__input-error form__input-error_register-email">
             This email is not available
