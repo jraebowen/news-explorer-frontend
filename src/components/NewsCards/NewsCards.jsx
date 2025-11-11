@@ -19,7 +19,6 @@ function NewsCards({
 
   const isSaved = savedArticles.some((a) => a.url === item.url);
 
-  console.log(item);
   const date = item.publishedAt;
   const dateObject = new Date(date);
   const updatedDate = dateObject.toLocaleDateString("en-US", {

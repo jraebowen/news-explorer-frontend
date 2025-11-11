@@ -205,11 +205,11 @@
   }
 
   .nav__links_mobile-btn_home {
-    background-image: url(../../assets/mobile-menu.png);
+    background-image: url(../../assets/mobile-menu.svg);
   }
 
   .nav__links_mobile-btn_news {
-    background-image: url(../../assets/mobile-menu-saved-news.png);
+    background-image: url(../../assets/mobile-menu-saved-news.svg);
   }
 
   .nav__content_mobile-modal {

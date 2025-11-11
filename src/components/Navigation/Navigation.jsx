@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import "./Navigation.css";
 
-import logouthome from "../../assets/logout-home.png";
-import logoutnews from "../../assets/logout-saved-news.png";
+import logouthome from "../../assets/logout-home.svg";
+import logoutnews from "../../assets/logout-saved-news.svg";
 import LoggedInContext from "../../contexts/LoggedInContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
