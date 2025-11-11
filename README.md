@@ -25,4 +25,4 @@ To be updated
 
 **Final Project**
 
-- [Link to deployed project]: To be updated
+- [Link to deployed project:] (https://jraebowen.github.io/news-explorer-frontend/)
