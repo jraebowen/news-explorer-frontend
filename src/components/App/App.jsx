@@ -18,6 +18,7 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 import { searchArticles } from "../../utils/newsApi";
 import { API_KEY } from "../../utils/constants";
 import * as auth from "../../utils/auth";
+import { getItems, saveArticle } from "../../utils/api.js";
 import { setToken, getToken, removeToken } from "../../utils/token";
 
 //context imports
@@ -75,13 +76,33 @@ function App() {
   };
 
   //article functions
-  const handleArticleSave = (item, query) => {
-    setSavedArticles((prev) => [...prev, { ...item, keyword: query }]);
+  const handleArticleSave = (article, query) => {
+    saveArticle(article).then((savedArticle) => {
+      setSavedArticles((prev) => [
+        ...prev,
+        { ...savedArticle, keyword: query },
+      ]);
+    });
   };
 
-  const handleArticleDelete = (item) => {
-    setSavedArticles((prev) => prev.filter((a) => a.url !== item.url));
+  const handleArticleDelete = (articleId) => {
+    deleteArticle(articleId).then(() => {
+      setSavedArticles((prev) =>
+        prev.filter((article) => article.url !== articleId)
+      );
+    });
   };
+
+  //get saved-news articles
+  useEffect(() => {
+    getItems()
+      .then((savedArticles) => {
+        setSavedArticles(savedArticles);
+      })
+      .catch((error) => {
+        console.error("Failed to load saved articles:", error);
+      });
+  }, []);
 
   //api functions
   const handleSearch = (query) => {
@@ -148,6 +169,8 @@ function App() {
       })
       .catch(console.error);
   };
+
+  //logout function
   const navigate = useNavigate();
   const handleLogout = () => {
     removeToken();

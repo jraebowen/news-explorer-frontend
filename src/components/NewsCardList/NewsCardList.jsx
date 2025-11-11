@@ -47,7 +47,7 @@ function NewsCardList({
             return (
               <NewsCards
                 item={item}
-                key={item.content}
+                key={item._id}
                 onArticleDelete={onArticleDelete}
                 savedArticles={savedArticles}
                 query={query}
