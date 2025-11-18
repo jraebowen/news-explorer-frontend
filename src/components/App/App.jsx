@@ -87,11 +87,16 @@ function App() {
     });
   };
 
-  const handleArticleDelete = (articleId) => {
-    deleteArticle(articleId).then(() => {
+  const handleArticleDelete = (articleUrl) => {
+    deleteArticle(articleUrl).then(() => {
       setSavedArticles((prev) =>
-        prev.filter((article) => article._id !== articleId)
+        prev.filter((article) => article.url !== articleUrl)
       );
+      setHoveredCard((prev) => {
+        const newHovered = { ...prev };
+        delete newHovered[articleUrl];
+        return newHovered;
+      });
     });
   };
 

@@ -38,21 +38,6 @@ function NewsCards({
 
   const articleUrl = item.url;
 
-  // let buttonImage;
-  // if (!isLoggedIn) {
-  //   buttonImage = onHover ? newsCardSaveIconHover : newsCardSaveIcon;
-  // } else if (isHomePage) {
-  //   buttonImage = isSaved
-  //     ? onHover
-  //       ? newsCardSavedIcon
-  //       : newsCardSavedIcon
-  //     : onHover
-  //     ? newsCardSaveIconHover
-  //     : newsCardSaveIcon;
-  // } else {
-  //   buttonImage = onHover ? newsCardDeleteIconHover : newsCardDeleteIcon;
-  // }
-
   return (
     <li className="news-card">
       <a
@@ -89,10 +74,10 @@ function NewsCards({
                     ? hoveredCard?.[item.url]
                       ? newsCardSaveIconHover
                       : newsCardSaveIcon
-                    : isHomePage
-                    ? isSaved
-                      ? newsCardSavedIcon
-                      : hoveredCard?.[item.url]
+                    : isHomePage && isSaved
+                    ? newsCardSavedIcon
+                    : isHomePage && !isSaved
+                    ? hoveredCard?.[item.url]
                       ? newsCardSaveIconHover
                       : newsCardSaveIcon
                     : hoveredCard?.[item.url]
@@ -103,7 +88,7 @@ function NewsCards({
               onClick={(e) => {
                 e.preventDefault();
                 if (!isLoggedIn) return;
-                if (isSaved) onArticleDelete(item._id);
+                if (isSaved) onArticleDelete(item.url);
                 else onArticleSave(item, query);
               }}
               onMouseEnter={() => handleArticleHover(item.url, true)}
