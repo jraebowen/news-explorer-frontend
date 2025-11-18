@@ -2,6 +2,7 @@ import "./Header.css";
 
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
+import mainImage from "../../assets/main-image.jpg";
 
 function Header({
   onLogin,
@@ -15,7 +16,14 @@ function Header({
   errorMessage,
 }) {
   return (
-    <header className="header">
+    <header
+      className="header"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${mainImage})`,
+        backgroundPosition: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       <Navigation
         onLogin={onLogin}
         onLogout={onLogout}

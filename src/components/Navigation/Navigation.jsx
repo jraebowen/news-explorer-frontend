@@ -7,6 +7,9 @@ import logouthome from "../../assets/logout-home.svg";
 import logoutnews from "../../assets/logout-saved-news.svg";
 import LoggedInContext from "../../contexts/LoggedInContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import mobileMenu from "../../assets/mobile-menu.svg";
+import mobileMenuSavedNews from "../../assets/mobile-menu-saved-news.svg";
+import modalClose from "../../assets/modal-close.svg";
 
 function Navigation({
   onLogin,
@@ -97,12 +100,13 @@ function Navigation({
       {!isMobileMenuOpened && !activeModal && (
         <button
           type="button"
-          className={`nav__links_mobile-btn ${
-            isHomePage
-              ? "nav__links_mobile-btn_home"
-              : "nav__links_mobile-btn_news"
-          }`}
+          className="nav__links_mobile-btn"
           onClick={toggleMobileMenu}
+          style={{
+            backgroundImage: `url(${
+              isHomePage ? mobileMenu : mobileMenuSavedNews
+            })`,
+          }}
         />
       )}
       <>
@@ -134,6 +138,10 @@ function Navigation({
             <button
               type="button"
               className="nav__mobile-menu_modal-close-btn"
+              style={{
+                backgroundImage: `url(${modalClose}
+              )`,
+              }}
               onClick={toggleMobileMenu}
             />
           </div>

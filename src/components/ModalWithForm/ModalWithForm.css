@@ -20,6 +20,7 @@
 }
 
 .form-modal__close-button {
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
   height: 40px;

@@ -1,6 +1,7 @@
 import "./ConfirmationModal.css";
 
 import escModalClose from "../../hooks/modalEscandOverlay";
+import modalClose from "../../assets/modal-close.svg";
 
 function ConfirmationModal({ onClose, isOpen, onLogin }) {
   escModalClose(isOpen, onClose);
@@ -12,6 +13,7 @@ function ConfirmationModal({ onClose, isOpen, onLogin }) {
           type="button"
           className="form-modal__close-button"
           onClick={onClose}
+          style={{ backgroundImage: `url(${modalClose})` }}
         />
         <h2 className="form-modal__title">
           Registration successfully completed!
