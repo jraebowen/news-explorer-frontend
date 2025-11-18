@@ -22,6 +22,8 @@ function Footer() {
             <li className="footer__link">
               <a
                 href="https://tripleten.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="footer__link-tripleten"
               >
                 TripleTen
@@ -29,12 +31,20 @@ function Footer() {
             </li>
           </div>
           <li className="footer__link">
-            <a href="https://github.com/jraebowen">
+            <a
+              href="https://github.com/jraebowen"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img src={github} alt="github" className="footer__link-github" />
             </a>
           </li>
           <li className="footer__link">
-            <a href="https://www.linkedin.com/in/jaimiebowen/">
+            <a
+              href="https://www.linkedin.com/in/jaimiebowen/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
                 src={linkedin}
                 alt="linkedin"
