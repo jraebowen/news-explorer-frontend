@@ -13,6 +13,8 @@ function Main({
   onArticleSave,
   query,
   errorMessage,
+  hoveredCard,
+  handleArticleHover,
 }) {
   const renderedArticles = articles.slice(0, visibleArticles);
 
@@ -37,6 +39,8 @@ function Main({
               onArticleDelete={onArticleDelete}
               query={query}
               errorMessage={errorMessage}
+              hoveredCard={hoveredCard}
+              handleArticleHover={handleArticleHover}
             ></NewsCardList>
             {renderedArticles.length < totalArticles && (
               <button className="main__btn-show-more" onClick={handleShowMore}>

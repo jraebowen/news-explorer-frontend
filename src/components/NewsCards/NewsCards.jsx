@@ -4,6 +4,11 @@ import { useLocation } from "react-router-dom";
 import "./NewsCards.css";
 
 import LoggedInContext from "../../contexts/LoggedInContext";
+import newsCardSaveIconHover from "../../assets/save-icon-hover.svg";
+import newsCardSaveIcon from "../../assets/save-icon.svg";
+import newsCardSavedIcon from "../../assets/save-icon-saved.svg";
+import newsCardDeleteIcon from "../../assets/delete-icon.svg";
+import newsCardDeleteIconHover from "../../assets/delete-icon-hover.svg";
 
 function NewsCards({
   item,
@@ -11,6 +16,8 @@ function NewsCards({
   onArticleDelete,
   savedArticles,
   query,
+  hoveredCard,
+  handleArticleHover,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -30,6 +37,21 @@ function NewsCards({
   const capitalSrc = item.source.name.toUpperCase();
 
   const articleUrl = item.url;
+
+  // let buttonImage;
+  // if (!isLoggedIn) {
+  //   buttonImage = onHover ? newsCardSaveIconHover : newsCardSaveIcon;
+  // } else if (isHomePage) {
+  //   buttonImage = isSaved
+  //     ? onHover
+  //       ? newsCardSavedIcon
+  //       : newsCardSavedIcon
+  //     : onHover
+  //     ? newsCardSaveIconHover
+  //     : newsCardSaveIcon;
+  // } else {
+  //   buttonImage = onHover ? newsCardDeleteIconHover : newsCardDeleteIcon;
+  // }
 
   return (
     <li className="news-card">
@@ -60,24 +82,32 @@ function NewsCards({
               </p>
             )}
             <button
-              className={`news-card__btn ${
-                !isLoggedIn
-                  ? "news-card__btn-save"
-                  : isHomePage
-                  ? isSaved
-                    ? "news-card__btn-saved"
-                    : "news-card__btn-save"
-                  : "news-card__btn-delete"
-              }`}
+              className="news-card__btn"
+              style={{
+                backgroundImage: `url(${
+                  !isLoggedIn
+                    ? hoveredCard?.[item.url]
+                      ? newsCardSaveIconHover
+                      : newsCardSaveIcon
+                    : isHomePage
+                    ? isSaved
+                      ? newsCardSavedIcon
+                      : hoveredCard?.[item.url]
+                      ? newsCardSaveIconHover
+                      : newsCardSaveIcon
+                    : hoveredCard?.[item.url]
+                    ? newsCardDeleteIconHover
+                    : newsCardDeleteIcon
+                })`,
+              }}
               onClick={(e) => {
                 e.preventDefault();
                 if (!isLoggedIn) return;
-                if (isSaved) {
-                  onArticleDelete(item);
-                } else {
-                  onArticleSave(item, query);
-                }
+                if (isSaved) onArticleDelete(item._id);
+                else onArticleSave(item, query);
               }}
+              onMouseEnter={() => handleArticleHover(item.url, true)}
+              onMouseLeave={() => handleArticleHover(item.url, false)}
             ></button>
           </div>
           <div className="news-card__text">

@@ -70,28 +70,6 @@
   cursor: pointer;
 }
 
-.news-card__btn-save {
-  background-image: url(../../assets/save-icon.svg);
-}
-
-.news-card__btn-save:hover {
-  background-image: url(../../assets/save-icon-hover.svg);
-}
-
-.news-card__btn-saved {
-  background-image: url(../../assets/save-icon-saved.svg);
-  top: 12px;
-  right: 12px;
-}
-
-.news-card__btn-delete {
-  background-image: url(../../assets/delete-icon.svg);
-}
-
-.news-card__btn-delete:hover {
-  background-image: url(../../assets/delete-icon-hover.svg);
-}
-
 .news-card__image-content:hover .news-card__save-text {
   opacity: 1;
 }

@@ -11,6 +11,8 @@ function NewsCardList({
   onArticleDelete,
   query,
   errorMessage,
+  hoveredCard,
+  handleArticleHover,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -38,7 +40,10 @@ function NewsCardList({
                 key={item.content}
                 onArticleSave={onArticleSave}
                 savedArticles={savedArticles}
+                onArticleDelete={onArticleDelete}
                 query={query}
+                hoveredCard={hoveredCard}
+                handleArticleHover={handleArticleHover}
               ></NewsCards>
             );
           })}
@@ -50,6 +55,9 @@ function NewsCardList({
                 key={item._id}
                 onArticleDelete={onArticleDelete}
                 savedArticles={savedArticles}
+                onArticleSave={onArticleSave}
+                hoveredCard={hoveredCard}
+                handleArticleHover={handleArticleHover}
                 query={query}
               ></NewsCards>
             );

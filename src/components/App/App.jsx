@@ -18,7 +18,7 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 import { searchArticles } from "../../utils/newsApi";
 import { API_KEY } from "../../utils/constants";
 import * as auth from "../../utils/auth";
-import { getItems, saveArticle } from "../../utils/api.js";
+import { getItems, saveArticle, deleteArticle } from "../../utils/api.js";
 import { setToken, getToken, removeToken } from "../../utils/token";
 
 //context imports
@@ -54,6 +54,8 @@ function App() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [hoveredCard, setHoveredCard] = useState({});
+
   //modal functions
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
@@ -88,9 +90,13 @@ function App() {
   const handleArticleDelete = (articleId) => {
     deleteArticle(articleId).then(() => {
       setSavedArticles((prev) =>
-        prev.filter((article) => article.url !== articleId)
+        prev.filter((article) => article._id !== articleId)
       );
     });
+  };
+
+  const handleArticleHover = (articleUrl, isHovering) => {
+    setHoveredCard((prev) => ({ ...prev, [articleUrl]: isHovering }));
   };
 
   //get saved-news articles
@@ -210,6 +216,8 @@ function App() {
                         onArticleDelete={handleArticleDelete}
                         query={query}
                         errorMessage={errorMessage}
+                        hoveredCard={hoveredCard}
+                        handleArticleHover={handleArticleHover}
                       ></Main>
                     )}
                     <About />
@@ -227,6 +235,8 @@ function App() {
                     onArticleSave={handleArticleSave}
                     onArticleDelete={handleArticleDelete}
                     query={query}
+                    hoveredCard={hoveredCard}
+                    handleArticleHover={handleArticleHover}
                   ></SavedNews>
                 }
               />

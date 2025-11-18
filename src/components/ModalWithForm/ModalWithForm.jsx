@@ -1,6 +1,7 @@
 import "./ModalWithForm.css";
 
 import escModalClose from "../../hooks/modalEscandOverlay";
+import modalCloseIcon from "../../assets/modal-close.svg"
 
 function ModalWithForm({
   onClose,
@@ -20,6 +21,7 @@ function ModalWithForm({
         <button
           type="button"
           className="form-modal__close-button"
+            style={{ backgroundImage: `url(${modalCloseIcon})` }}
           onClick={onClose}
         />
         <h2 className="form-modal__title">{title}</h2>

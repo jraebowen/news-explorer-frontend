@@ -68,7 +68,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -15px;
   width: 68px;
   height: 3px;
   background-color: white;
@@ -145,9 +145,7 @@
 @media screen and (max-width: 850px) {
   .nav {
     padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
   }
   .nav__links {
     font-size: 16px;
@@ -161,6 +159,9 @@
 @media screen and (max-width: 750px) {
   .nav {
     padding: 0 16px;
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .nav__overlay {

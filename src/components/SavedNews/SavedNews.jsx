@@ -12,6 +12,8 @@ function SavedNews({
   onArticleSave,
   onArticleDelete,
   query,
+  hoveredCard,
+  handleArticleHover,
 }) {
   return (
     <section className="saved-news">
@@ -25,6 +27,9 @@ function SavedNews({
         savedArticles={savedArticles}
         onArticleSave={onArticleSave}
         onArticleDelete={onArticleDelete}
+        hoveredCard={hoveredCard}
+        handleArticleHover={handleArticleHover}
+        query={query}
       ></NewsCardList>
     </section>
   );

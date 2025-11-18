@@ -70,3 +70,9 @@ export function saveArticle(article) {
     resolve(savedArticle);
   });
 }
+
+export function deleteArticle(articleId) {
+  return new Promise((resolve, reject) => {
+    resolve({ _id: articleId });
+  });
+}
