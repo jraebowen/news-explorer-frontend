@@ -19,7 +19,7 @@
   transition-delay: 0s;
 }
 
-.form-modal__close-button {
+.modal__close-button {
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,12 +33,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.form-modal__close-button:hover {
+.modal__close-button:hover {
   cursor: pointer;
   opacity: 70%;
 }
 
-.form-modal__container {
+.modal__container {
   background-color: white;
   max-width: 358px;
   border-radius: 20px;
@@ -49,21 +49,21 @@
   padding: 34px 36px 28px 36px;
 }
 
-.form-modal__title {
+.modal__title {
   font-size: 24px;
   font-weight: 900;
   color: rgba(26, 27, 34, 1);
   margin: 0 0 22px 0;
 }
 
-.form-modal__button-wrapper {
+.modal__button-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 16px;
 }
 
-.form-modal__button {
+.modal__button {
   background-color: rgba(47, 113, 229, 1);
   color: white;
   height: 64px;
@@ -75,12 +75,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.form-modal__button:hover {
+.modal__button:hover {
   cursor: pointer;
   opacity: 70%;
 }
 
-.form-modal__button:disabled {
+.modal__button:disabled {
   background-color: rgba(230, 232, 235, 1);
   color: rgba(182, 188, 191, 1);
   box-shadow: none;
@@ -95,7 +95,7 @@
     justify-content: center;
   }
 
-  .modal__is-opened .form-modal__container {
+  .modal__is-opened .modal__container {
     max-width: 100%;
     width: 100%;
     position: fixed;
@@ -108,18 +108,18 @@
     display: flex;
   }
 
-  .modal__is-opened .form-modal__close-button {
+  .modal__is-opened .modal__close-button {
     width: 24px;
     height: 24px;
     top: -5%;
     right: 16px;
   }
 
-  .modal__is-opened .form-modal__title {
+  .modal__is-opened .modal__title {
     margin: 0 0 22px 17px;
   }
 
-  .modal__is-opened .form-modal__button {
+  .modal__is-opened .modal__button {
     max-width: 288px;
     margin: 0 auto 0 auto;
   }

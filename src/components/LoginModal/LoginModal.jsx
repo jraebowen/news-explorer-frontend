@@ -38,11 +38,11 @@ function LoginModal({ isOpen, onClose, onRegister, handleLogin }) {
       title="Sign in"
       buttonText="Sign in"
       secondaryButton={
-        <p className="form-modal__secondary-button_text">
+        <p className="modal__secondary-button_text">
           or{" "}
           <button
             type="button"
-            className="form-modal__secondary-button"
+            className="modal__secondary-button"
             onClick={onRegister}
           >
             Sign up

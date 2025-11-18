@@ -19,7 +19,7 @@
   transition-delay: 0s;
 }
 
-.form-modal__close-button {
+.modal__close-button {
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,12 +33,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.form-modal__close-button:hover {
+.modal__close-button:hover {
   cursor: pointer;
   opacity: 70%;
 }
 
-.form-modal__container {
+.modal__container {
   background-color: white;
   max-width: 358px;
   border-radius: 20px;
@@ -49,14 +49,14 @@
   padding: 34px 36px 28px 36px;
 }
 
-.form-modal__title {
+.modal__title {
   font-size: 24px;
   font-weight: 900;
   color: rgba(26, 27, 34, 1);
   margin: 0 0 22px 0;
 }
 
-.form-modal__sign-in {
+.modal__sign-in {
   border: none;
   background-color: transparent;
   color: rgba(47, 113, 229, 1);
@@ -67,7 +67,7 @@
   text-align: left;
 }
 
-.form-modal__sign-in:hover {
+.modal__sign-in:hover {
   color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
 }

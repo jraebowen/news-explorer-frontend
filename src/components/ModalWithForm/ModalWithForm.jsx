@@ -17,24 +17,20 @@ function ModalWithForm({
 
   return (
     <div className={`modal ${isOpen && "modal__is-opened"}`}>
-      <div className="form-modal__container">
+      <div className="modal__container">
         <button
           type="button"
-          className="form-modal__close-button"
+          className="modal__close-button"
           style={{
             backgroundImage: `url(${modalCloseIcon})`,
           }}
           onClick={onClose}
         />
-        <h2 className="form-modal__title">{title}</h2>
+        <h2 className="modal__title">{title}</h2>
         <form className="form" onSubmit={onSubmit}>
           {children}
-          <div className="form-modal__button-wrapper">
-            <button
-              type="submit"
-              className="form-modal__button"
-              disabled={!isValid}
-            >
+          <div className="modal__button-wrapper">
+            <button type="submit" className="modal__button" disabled={!isValid}>
               {buttonText}
             </button>
           </div>

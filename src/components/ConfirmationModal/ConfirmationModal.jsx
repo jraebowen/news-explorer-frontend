@@ -8,17 +8,15 @@ function ConfirmationModal({ onClose, isOpen, onLogin }) {
 
   return (
     <div className={`modal ${isOpen && "modal__is-opened"}`}>
-      <div className="form-modal__container">
+      <div className="modal__container">
         <button
           type="button"
-          className="form-modal__close-button"
+          className="modal__close-button"
           onClick={onClose}
           style={{ backgroundImage: `url(${modalClose})` }}
         />
-        <h2 className="form-modal__title">
-          Registration successfully completed!
-        </h2>
-        <button type="button" className="form-modal__sign-in" onClick={onLogin}>
+        <h2 className="modal__title">Registration successfully completed!</h2>
+        <button type="button" className="modal__sign-in" onClick={onLogin}>
           Sign in
         </button>
       </div>
