@@ -6,7 +6,7 @@
   border-bottom-color: #888;
   border-radius: 50%;
   position: absolute;
-  top: 15%;
+  top: 25%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -30,16 +30,26 @@
 
 @media screen and (max-width: 1130px) {
   .preloader-text {
-    margin-top: 100px;
+    margin-top: 90px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .circle-preloader {
+    top: -10%;
+  }
+
+  .preloader-text {
+    margin-top: 90px;
   }
 }
 
 @media screen and (max-width: 750px) {
   .circle-preloader {
-    top: 5%;
+    top: 15%;
   }
 
   .preloader-text {
-    margin-top: 100px;
+    margin-top: 90px;
   }
 }

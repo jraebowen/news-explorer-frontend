@@ -29,14 +29,15 @@ function ModalWithForm({
         <h2 className="form-modal__title">{title}</h2>
         <form className="form" onSubmit={onSubmit}>
           {children}
-
-          <button
-            type="submit"
-            className="form-modal__button"
-            disabled={!isValid}
-          >
-            {buttonText}
-          </button>
+          <div className="form-modal__button-wrapper">
+            <button
+              type="submit"
+              className="form-modal__button"
+              disabled={!isValid}
+            >
+              {buttonText}
+            </button>
+          </div>
           {secondaryButton}
         </form>
       </div>
