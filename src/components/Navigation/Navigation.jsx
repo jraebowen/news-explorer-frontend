@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import "./Navigation.css";
 
@@ -18,6 +18,16 @@ function Navigation({
   isMobileMenuOpened,
   activeModal,
 }) {
+  const navigate = useNavigate();
+
+  const goToSavedNews = () => {
+    if (isHomePage) navigate("/saved-news");
+  };
+
+  const goToHomepage = () => {
+    if (!isHomePage) navigate("/");
+  };
+
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -27,44 +37,43 @@ function Navigation({
   return (
     <nav className="nav">
       <div className="nav__content nav__content_desktop">
-        <Link to="/">
-          <button
-            type="button"
-            className={`nav__content-logo nav__content-logo_desktop ${
-              isHomePage ? "" : "nav__content-logo_saved-news"
-            }`}
-          >
-            NewsExplorer
-          </button>
-        </Link>
+        <button
+          type="button"
+          className={`nav__content-logo nav__content-logo_desktop ${
+            isHomePage ? "" : "nav__content-logo_saved-news"
+          }`}
+          onClick={goToHomepage}
+        >
+          NewsExplorer
+        </button>
+
         <ul className="nav__links nav__links_desktop">
           <li className="nav__item">
-            <Link to="/">
-              <button
-                type="button"
-                className={`nav__links-home ${
-                  isHomePage ? "" : "nav__links-home_saved-news"
-                }`}
-              >
-                Home
-              </button>
-            </Link>
+            <button
+              type="button"
+              className={`nav__links-home ${
+                isHomePage ? "" : "nav__links-home_saved-news"
+              }`}
+              onClick={goToHomepage}
+            >
+              Home
+            </button>
           </li>
 
           {isLoggedIn ? (
             <>
-              <Link to="saved-news">
-                <li className="nav__item">
-                  <button
-                    type="button"
-                    className={`nav__links-profile ${
-                      isHomePage ? "" : "nav__links-profile_saved-news"
-                    }`}
-                  >
-                    Saved Articles
-                  </button>
-                </li>
-              </Link>
+              <li className="nav__item">
+                <button
+                  type="button"
+                  className={`nav__links-profile ${
+                    isHomePage ? "" : "nav__links-profile_saved-news"
+                  }`}
+                  onClick={goToSavedNews}
+                >
+                  Saved Articles
+                </button>
+              </li>
+
               <li className="nav__item">
                 <button
                   type="button"
@@ -127,14 +136,13 @@ function Navigation({
           }`}
         >
           <div className="nav__header-mobile">
-            <Link to="/">
-              <button
-                type="button"
-                className="nav__content-logo nav__content-logo_mobile"
-              >
-                NewsExplorer
-              </button>
-            </Link>
+            <button
+              type="button"
+              className="nav__content-logo nav__content-logo_mobile"
+              onClick={goToHomepage}
+            >
+              NewsExplorer
+            </button>
             <button
               type="button"
               className="nav__mobile-menu_modal-close-btn"
@@ -148,29 +156,31 @@ function Navigation({
 
           <ul className="nav__links nav__links_mobile">
             <li className="nav__item nav__item_home">
-              <Link to="/">
-                <button
-                  type="button"
-                  className="nav__links-home nav__links-home_mobile"
-                  onClick={toggleMobileMenu}
-                >
-                  Home
-                </button>
-              </Link>
+              <button
+                type="button"
+                className="nav__links-home nav__links-home_mobile"
+                onClick={() => {
+                  toggleMobileMenu();
+                  goToHomepage();
+                }}
+              >
+                Home
+              </button>
             </li>
             {isLoggedIn ? (
               <>
-                <Link to="/saved-news">
-                  <li className="nav__item nav__item_profile">
-                    <button
-                      type="button"
-                      className="nav__links-profile nav__links-profile_mobile"
-                      onClick={toggleMobileMenu}
-                    >
-                      Saved Articles
-                    </button>
-                  </li>
-                </Link>
+                <li className="nav__item nav__item_profile">
+                  <button
+                    type="button"
+                    className="nav__links-profile nav__links-profile_mobile"
+                    onClick={() => {
+                      toggleMobileMenu();
+                      goToSavedNews();
+                    }}
+                  >
+                    Saved Articles
+                  </button>
+                </li>
                 <li className="nav__item nav__item_logout">
                   <button
                     type="button"
