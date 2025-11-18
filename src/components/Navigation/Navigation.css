@@ -109,6 +109,16 @@
   color: rgba(26, 27, 34, 1);
 }
 
+.nav__links-profile_saved-news::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  bottom: -15px;
+  width: 178px;
+  height: 3px;
+  background-color: black;
+}
+
 .nav__links-logout {
   background: transparent;
   color: white;

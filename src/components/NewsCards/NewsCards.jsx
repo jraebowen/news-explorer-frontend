@@ -71,9 +71,7 @@ function NewsCards({
               style={{
                 backgroundImage: `url(${
                   !isLoggedIn
-                    ? hoveredCard?.[item.url]
-                      ? newsCardSaveIconHover
-                      : newsCardSaveIcon
+                    ? newsCardSaveIcon
                     : isHomePage && isSaved
                     ? newsCardSavedIcon
                     : isHomePage && !isSaved
