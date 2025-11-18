@@ -1,8 +1,3 @@
-const newsApiBaseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
-
 export const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
@@ -11,7 +6,7 @@ export const checkResponse = (res) => {
 };
 
 export function getItems() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       {
         _id: "65f7368dfb74bd6a92114c85",
@@ -56,7 +51,7 @@ export function getItems() {
 }
 
 export function saveArticle(article) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // Generate a fake ID for the "saved" article
     const savedArticle = {
       _id: "65f7371e7bce9e7d331b11a0", // Fake MongoDB ID
@@ -72,7 +67,7 @@ export function saveArticle(article) {
 }
 
 export function deleteArticle(articleId) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve({ _id: articleId });
   });
 }

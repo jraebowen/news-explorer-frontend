@@ -1,24 +1,17 @@
-import { checkResponse } from "./api";
-
-const newsApiBaseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
-
 export const signUp = (email, password, username) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve({ email, password, username });
   });
 };
 
-export const signIn = (email, password) => {
-  return new Promise((resolve, reject) => {
+export const signIn = () => {
+  return new Promise((resolve) => {
     resolve({ token: "a fake token" });
   });
 };
 
-export const checkToken = (token) => {
-  return new Promise((resolve, reject) => {
+export const checkToken = () => {
+  return new Promise((resolve) => {
     resolve({
       user: {
         username: "Test User",

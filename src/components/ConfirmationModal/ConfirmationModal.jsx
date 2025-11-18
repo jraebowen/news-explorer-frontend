@@ -1,10 +1,10 @@
 import "./ConfirmationModal.css";
 
-import escModalClose from "../../hooks/modalEscandOverlay";
+import useEscModalClose from "../../hooks/modalEscandOverlay";
 import modalClose from "../../assets/modal-close.svg";
 
 function ConfirmationModal({ onClose, isOpen, onLogin }) {
-  escModalClose(isOpen, onClose);
+  useEscModalClose(isOpen, onClose);
 
   return (
     <div className={`modal ${isOpen && "modal__is-opened"}`}>

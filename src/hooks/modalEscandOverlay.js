@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function escModalClose(isOpen, onClose) {
+function useEscModalClose(isOpen, onClose) {
   useEffect(() => {
     if (!isOpen) return;
 
@@ -26,4 +26,4 @@ function escModalClose(isOpen, onClose) {
   }, [isOpen, onClose]);
 }
 
-export default escModalClose;
+export default useEscModalClose;

@@ -19,7 +19,7 @@ import { searchArticles } from "../../utils/newsApi";
 import { API_KEY } from "../../utils/constants";
 import * as auth from "../../utils/auth";
 import { getItems, saveArticle, deleteArticle } from "../../utils/api.js";
-import { setToken, getToken, removeToken } from "../../utils/token";
+import { setToken, removeToken } from "../../utils/token";
 
 //context imports
 import LoggedInContext from "../../contexts/LoggedInContext.js";

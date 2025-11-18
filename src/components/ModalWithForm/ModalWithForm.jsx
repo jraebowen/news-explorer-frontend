@@ -1,6 +1,6 @@
 import "./ModalWithForm.css";
 
-import escModalClose from "../../hooks/modalEscandOverlay";
+import useEscModalClose from "../../hooks/modalEscandOverlay";
 import modalCloseIcon from "../../assets/modal-close.svg";
 
 function ModalWithForm({
@@ -13,7 +13,7 @@ function ModalWithForm({
   onSubmit,
   isValid,
 }) {
-  escModalClose(isOpen, onClose);
+  useEscModalClose(isOpen, onClose);
 
   return (
     <div className={`modal ${isOpen && "modal__is-opened"}`}>

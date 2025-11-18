@@ -34,7 +34,7 @@ function Header({
       <div className="header__content">
         <div className="header__search">
           <h1 className="header__search_title">
-            What's going on in the world?
+            What&apos;s going on in the world?
           </h1>
           <p className="header__search_description">
             Find the latest news on any topic and save them in your personal
