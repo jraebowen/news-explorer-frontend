@@ -1,0 +1,120 @@
+.footer {
+  height: 80px;
+  padding: 0 104px 0 104px;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  color: #b6bcbf;
+  font-size: 16px;
+  padding: 32px 0 26px 0;
+  margin: 0;
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__links_text-links {
+  display: flex;
+}
+
+.footer__link-home {
+  background-color: transparent;
+  border: none;
+  padding: 0 40px 0 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.footer__link-home:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.footer__link-tripleten {
+  padding: 0 40px 0 0;
+  text-decoration: none;
+  color: #1a1b22;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.footer__link-tripleten:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.footer__link-github {
+  height: 24px;
+  width: 24px;
+  margin: 0 24px 0 0;
+  padding: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.footer__link-github:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+.footer__link-linkedin {
+  height: 24px;
+  width: 24px;
+  padding: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.footer__link-linkedin:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+@media screen and (max-width: 850px) {
+  .footer {
+    padding: 0 40px 0 40px;
+  }
+
+  .footer__copyright {
+    padding: 24px 0 18px 0;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .footer {
+    height: 176px;
+    padding: 0 16px;
+  }
+
+  .footer__links {
+    padding-top: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-right: 16px;
+  }
+
+  .footer__links_text-links {
+    height: 74px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .footer__content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer__copyright {
+    padding: 38px 0 22px 0;
+    margin: 0;
+  }
+}
