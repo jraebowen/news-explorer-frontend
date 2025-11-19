@@ -18,12 +18,33 @@
 }
 
 .news-card-list__no-match {
-  color: #b6bcbf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.news-card-list__no-match_image {
+  height: 83px;
+  width: 83px;
+  margin-bottom: 32px;
+}
+
+.news-card-list__no-match_title {
+  color: #1a1b22;
   font-family: "Roboto Slab", "Times New Roman", Times, serif;
-  font-size: 30px;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  margin: 0 0 16px 0;
+}
+
+.news-card-list__no-match_text {
+  color: #b6bcbf;
   text-align: center;
   margin: 0;
+  max-width: 356px;
 }
+
 .news-card-list__error {
   color: #b6bcbf;
   font-family: "Roboto Slab", "Times New Roman", Times, serif;

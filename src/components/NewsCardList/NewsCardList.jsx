@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./NewsCardList.css";
 
 import NewsCards from "../NewsCards/NewsCards";
+import NotFound from "../../assets/not-found-image.svg";
 
 function NewsCardList({
   renderedArticles,
@@ -26,7 +27,17 @@ function NewsCardList({
           <p className="news-card-list__error">{errorMessage}</p>
         )}
         {isHomePage && renderedArticles.length === 0 && !errorMessage && (
-          <p className="news-card-list__no-match">Nothing Found</p>
+          <div className="news-card-list__no-match">
+            <img
+              src={NotFound}
+              alt="No Results"
+              className="news-card-list__no-match_image"
+            />
+            <p className="news-card-list__no-match_title">Nothing Found</p>
+            <p className="news-card-list__no-match_text">
+              Sorry, but nothing matched your search terms.
+            </p>
+          </div>
         )}
         {!isHomePage && savedArticles.length === 0 && (
           <p className="news-card-list__no-saved">No Saved Articles</p>

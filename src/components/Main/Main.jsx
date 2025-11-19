@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 import "./Main.css";
 
 import NewsCardList from "../NewsCardList/NewsCardList";
@@ -17,6 +19,7 @@ function Main({
   handleArticleHover,
 }) {
   const renderedArticles = articles.slice(0, visibleArticles);
+  const isHomePage = location.pathname === "/";
 
   const handleShowMore = () => {
     setVisibleArticles((prev) => prev + 3);
@@ -31,7 +34,11 @@ function Main({
           <Preloader />
         ) : (
           <>
-            <p className="main__title">Search Results</p>
+            {isHomePage && renderedArticles.length !== 0 ? (
+              <p className="main__title">Search Results</p>
+            ) : (
+              ""
+            )}
             <NewsCardList
               renderedArticles={renderedArticles}
               savedArticles={savedArticles}
