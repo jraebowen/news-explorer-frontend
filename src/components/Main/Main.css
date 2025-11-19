@@ -31,7 +31,7 @@
   border-radius: 80px;
   align-items: center;
   display: block;
-  margin: 0 auto;
+  margin: 64px auto 0 auto;
   transition: background-color 0.3s ease-in-out;
 }
 
