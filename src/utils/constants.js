@@ -1,1 +1,1 @@
-export const API_KEY = "42e29eaa84b9493b8fd66d54900e2563";
+const API_KEY = process.env.NEWS_API_KEY;
