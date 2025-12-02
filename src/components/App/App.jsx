@@ -13,6 +13,7 @@ import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
+import ProtectedRoute from "./ProtectedRoute";
 
 //utils imports
 import { searchArticles } from "../../utils/newsApi";
@@ -232,17 +233,29 @@ function App() {
               <Route
                 path="/saved-news"
                 element={
-                  <SavedNews
-                    onLogout={handleLogout}
-                    toggleMobileMenu={toggleMobileMenu}
-                    isMobileMenuOpened={isMobileMenuOpened}
-                    savedArticles={savedArticles}
-                    onArticleSave={handleArticleSave}
-                    onArticleDelete={handleArticleDelete}
-                    query={query}
-                    hoveredCard={hoveredCard}
-                    handleArticleHover={handleArticleHover}
-                  ></SavedNews>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <SavedNews
+                      onLogout={handleLogout}
+                      toggleMobileMenu={toggleMobileMenu}
+                      isMobileMenuOpened={isMobileMenuOpened}
+                      savedArticles={savedArticles}
+                      onArticleSave={handleArticleSave}
+                      onArticleDelete={handleArticleDelete}
+                      query={query}
+                      hoveredCard={hoveredCard}
+                      handleArticleHover={handleArticleHover}
+                    ></SavedNews>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  isLoggedIn ? (
+                    <Navigate to="/saved-news" replace />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
                 }
               />
             </Routes>
