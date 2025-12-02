@@ -32,8 +32,8 @@ function SavedNewsHeader({ savedArticles }) {
         <p className="saved-news__title">Saved articles</p>
         <p className="saved-news__details">
           {keywordCount === 1
-            ? `${currentUser.username}, you have ${savedArticles.length} ${articleText}`
-            : `${currentUser.username}, you
+            ? `${currentUser.name}, you have ${savedArticles.length} ${articleText}`
+            : `${currentUser.name}, you
           have ${savedArticles.length} ${articleText}`}
         </p>
         <p className="saved-news__keywords">By keywords: {keywordDisplay}</p>

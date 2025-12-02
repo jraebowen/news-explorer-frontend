@@ -1,28 +1,26 @@
+import { checkResponse } from "./api";
+
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.newsexplorer.wildsurf.net"
     : "http://localhost:3002";
 
-export const signUp = (email, password, username) => {
-  return new Promise((resolve) => {
-    resolve({ email, password, username });
-  });
+export const signUp = (email, password, name) => {
+  return fetch(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, name }),
+  }).then(checkResponse);
 };
 
-export const signIn = () => {
-  return new Promise((resolve) => {
-    resolve({ token: "a fake token" });
-  });
-};
-
-export const checkToken = () => {
-  return new Promise((resolve) => {
-    resolve({
-      user: {
-        username: "Test User",
-        email: "fake@example.com",
-        _id: "fake-id",
-      },
-    });
-  });
+export const signIn = (email, password) => {
+  return fetch(`${baseUrl}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  }).then(checkResponse);
 };

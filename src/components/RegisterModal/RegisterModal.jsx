@@ -19,7 +19,7 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
   useEffect(() => {
     if (isOpen) {
       handleResetValues();
-      setValues({ email: "", password: "", username: "" });
+      setValues({ email: "", password: "", name: "" });
     }
   }, [isOpen, handleResetValues, setValues]);
 
@@ -98,11 +98,11 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
           id="username-register-input"
           placeholder="Enter your username"
           onChange={handleChange}
-          value={values.username || ""}
+          value={values.name || ""}
           required
         />
-        {errors.username && (
-          <span className="form__input-error">{errors.username}</span>
+        {errors.name && (
+          <span className="form__input-error">{errors.name}</span>
         )}
         {/* {errors.email && (
           <span className="form__input-error form__input-error_register-email">

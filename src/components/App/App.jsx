@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 //css import
 import "./App.css";
@@ -13,14 +13,19 @@ import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute";
 
 //utils imports
 import { searchArticles } from "../../utils/newsApi";
 import { API_KEY } from "../../utils/constants";
 import * as auth from "../../utils/auth";
-import { getItems, saveArticle, deleteArticle } from "../../utils/api.js";
-import { setToken, removeToken } from "../../utils/token";
+import {
+  getUserInfo,
+  getArticles,
+  saveArticle,
+  deleteArticle,
+} from "../../utils/api.js";
+import { setToken, getToken, removeToken } from "../../utils/token";
 
 //context imports
 import LoggedInContext from "../../contexts/LoggedInContext.js";
@@ -31,7 +36,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({
     email: "",
     password: "",
-    username: "",
+    name: "",
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -80,7 +85,7 @@ function App() {
 
   //article functions
   const handleArticleSave = (article, query) => {
-    saveArticle(article).then((savedArticle) => {
+    saveArticle(article, query).then((savedArticle) => {
       setSavedArticles((prev) => [
         ...prev,
         { ...savedArticle, keyword: query },
@@ -88,14 +93,14 @@ function App() {
     });
   };
 
-  const handleArticleDelete = (articleUrl) => {
-    deleteArticle(articleUrl).then(() => {
+  const handleArticleDelete = (article) => {
+    deleteArticle(article._id).then(() => {
       setSavedArticles((prev) =>
-        prev.filter((article) => article.url !== articleUrl)
+        prev.filter((item) => item._id !== article._id)
       );
       setHoveredCard((prev) => {
         const newHovered = { ...prev };
-        delete newHovered[articleUrl];
+        delete newHovered[article._id];
         return newHovered;
       });
     });
@@ -107,14 +112,15 @@ function App() {
 
   //get saved-news articles
   useEffect(() => {
-    getItems()
+    if (!isLoggedIn) return;
+    getArticles()
       .then((savedArticles) => {
         setSavedArticles(savedArticles);
       })
       .catch((error) => {
         console.error("Failed to load saved articles:", error);
       });
-  }, []);
+  }, [isLoggedIn]);
 
   //api functions
   const handleSearch = (query) => {
@@ -138,22 +144,26 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  //checking for token on page load - hold for backend portion
-  // useEffect(() => {
-  //   const jwt = getToken();
-  //   if (!jwt) {
-  //     return;
-  //   }
-  //   auth.checkToken(jwt).then(({ user }) => {
-  //     setIsLoggedIn(true);
-  //     setCurrentUser(user);
-  //   });
-  // }, []);
+  //checking for token on page load
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      return;
+    }
+    getUserInfo()
+      .then(({ user }) => {
+        setIsLoggedIn(true);
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        console.error("Failed to find user: ", err);
+      });
+  }, []);
 
   //registration function
   const handleRegistration = (newUser) => {
     return auth
-      .signUp(newUser.email, newUser.password, newUser.username)
+      .signUp(newUser.email, newUser.password, newUser.name)
       .then(() => {
         handleModalClose();
         handleConfirmationModal();
@@ -171,11 +181,11 @@ function App() {
       .then((data) => {
         if (data.token) {
           setToken(data.token);
-          return auth.checkToken(data.token);
+          return getUserInfo();
         }
       })
       .then((data) => {
-        setCurrentUser(data.user);
+        setCurrentUser(data);
         setIsLoggedIn(true);
         handleModalClose();
       })

@@ -82,7 +82,7 @@ function Navigation({
                   }`}
                   onClick={onLogout}
                 >
-                  {currentUser.username}
+                  {currentUser.name}
                   <img
                     src={isHomePage ? logouthome : logoutnews}
                     alt="logout icon"
@@ -187,7 +187,7 @@ function Navigation({
                     className="nav__links-logout"
                     onClick={onLogout}
                   >
-                    {currentUser.username}
+                    {currentUser.name}
                     <img
                       src={logouthome}
                       alt="logout icon"

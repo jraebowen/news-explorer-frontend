@@ -19,7 +19,7 @@ function LoginModal({ isOpen, onClose, onRegister, handleLogin }) {
   useEffect(() => {
     if (isOpen) {
       handleResetValues();
-      setValues({ email: "", password: "", username: "" });
+      setValues({ email: "", password: "", name: "" });
     }
   }, [isOpen, handleResetValues, setValues]);
 
