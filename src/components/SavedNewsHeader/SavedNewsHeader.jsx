@@ -20,6 +20,10 @@ function SavedNewsHeader({ savedArticles }) {
   } else if (keywordCount === 3) {
     keywordDisplay = `${keywords[0]}, ${keywords[1]}, and ${
       keywordCount - 2
+    } other`;
+  } else if (keywordCount === 4) {
+    keywordDisplay = `${keywords[0]}, ${keywords[1]}, and ${
+      keywordCount - 2
     } others`;
   }
 

@@ -141,12 +141,7 @@
     height: 150px;
   }
 
-  .news-card__btn-save {
-    top: 16px;
-    right: 8px;
-  }
-
-  .news-card__btn-delete {
+  .news-card__btn {
     top: 16px;
     right: 8px;
   }
