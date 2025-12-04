@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
 //css import
 import "./App.css";
@@ -46,6 +52,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
 
   const [existingEmail, setExistingEmail] = useState(false);
+
+  const [shouldOpenLoginModal, setShouldOpenLoginModal] = useState(false);
 
   //article rendering states
   const [articles, setArticles] = useState([]);
@@ -213,6 +221,14 @@ function App() {
     setIsLoggedIn(false);
   };
 
+  //protected route function for opening login
+  useEffect(() => {
+    if (shouldOpenLoginModal) {
+      handleLoginModalOpen(); // whatever function you already use
+      setShouldOpenLoginModal(false); // reset so it doesn’t reopen later
+    }
+  }, [shouldOpenLoginModal]);
+
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
       <LoggedInContext.Provider value={{ isLoggedIn }}>
@@ -256,7 +272,10 @@ function App() {
               <Route
                 path="/saved-news"
                 element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    requestLoginModal={() => setShouldOpenLoginModal(true)}
+                  >
                     <SavedNews
                       onLogout={handleLogout}
                       toggleMobileMenu={toggleMobileMenu}

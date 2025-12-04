@@ -1,11 +1,14 @@
-import { Navigate } from "react-router-dom";
+function ProtectedRoute({ isLoggedIn, children, requestLoginModal }) {
+  const navigate = useNavigate();
 
-function ProtectedRoute({ isLoggedIn, children }) {
-  if (!isLoggedIn) {
-    return <Navigate to="/" replace />;
-  }
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/news-explorer-frontend/", { replace: true });
+      requestLoginModal();
+    }
+  }, [isLoggedIn]);
 
-  return children;
+  return isLoggedIn ? children : null;
 }
 
 export default ProtectedRoute;
