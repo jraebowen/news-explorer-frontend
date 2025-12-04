@@ -9,6 +9,7 @@ import newsCardSaveIcon from "../../assets/save-icon.svg";
 import newsCardSavedIcon from "../../assets/save-icon-saved.svg";
 import newsCardDeleteIcon from "../../assets/delete-icon.svg";
 import newsCardDeleteIconHover from "../../assets/delete-icon-hover.svg";
+import { capitalize } from "../../utils/helpers";
 
 function NewsCards({
   item,
@@ -54,7 +55,9 @@ function NewsCards({
           />
           <div className="news-card__image-content">
             {!isHomePage && (
-              <p className="news-card__image-keyword">{item.keyword}</p>
+              <p className="news-card__image-keyword">
+                {capitalize(item.keyword)}
+              </p>
             )}
 
             {!isHomePage && isLoggedIn && (
