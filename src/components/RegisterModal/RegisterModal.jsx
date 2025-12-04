@@ -5,7 +5,14 @@ import "./RegisterModal.css";
 import { useFormandValidation } from "../../hooks/useFormandValidation.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
+function RegisterModal({
+  isOpen,
+  onClose,
+  onLogin,
+  handleRegistration,
+  setExistingEmail,
+  existingEmail,
+}) {
   const {
     values,
     handleChange,
@@ -20,13 +27,18 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
     if (isOpen) {
       handleResetValues();
       setValues({ email: "", password: "", name: "" });
+      setExistingEmail(false);
     }
   }, [isOpen, handleResetValues, setValues]);
 
   //form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration(values);
+    handleRegistration(values).catch((err) => {
+      if (err.type === "email-exists") {
+        setExistingEmail(true);
+      }
+    });
   };
 
   return (
@@ -104,11 +116,11 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
         {errors.name && (
           <span className="form__input-error">{errors.name}</span>
         )}
-        {/* {errors.email && (
+        {existingEmail && (
           <span className="form__input-error form__input-error_register-email">
             This email is not available
           </span>
-        )} */}
+        )}
       </fieldset>
     </ModalWithForm>
   );

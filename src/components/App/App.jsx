@@ -45,6 +45,8 @@ function App() {
 
   const [activeModal, setActiveModal] = useState("");
 
+  const [existingEmail, setExistingEmail] = useState(false);
+
   //article rendering states
   const [articles, setArticles] = useState([]);
 
@@ -173,7 +175,13 @@ function App() {
         handleModalClose();
         handleConfirmationModal();
       })
-      .catch(console.error);
+      .catch((err) => {
+        if (err.type === "email-exists") {
+          setExistingEmail(true);
+        } else {
+          console.error(err);
+        }
+      });
   };
 
   //login function
@@ -287,6 +295,8 @@ function App() {
             onClose={handleModalClose}
             onLogin={handleLoginModal}
             handleRegistration={handleRegistration}
+            setExistingEmail={setExistingEmail}
+            existingEmail={existingEmail}
           ></RegisterModal>
           <ConfirmationModal
             isOpen={activeModal === "confirmation-modal"}
