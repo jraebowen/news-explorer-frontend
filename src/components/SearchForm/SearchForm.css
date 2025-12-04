@@ -1,5 +1,6 @@
 .search-container {
   position: relative;
+  display: flex;
 }
 
 .search-bar {
@@ -24,6 +25,25 @@
   display: none;
 }
 
+.search-button-clear {
+  height: 20px;
+  width: 20px;
+  background-size: contain;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 20px;
+  right: 30%;
+  opacity: 70%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.search-button-clear:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
+
 .search-button {
   color: white;
   background-color: #2f71e5;
@@ -37,6 +57,7 @@
   position: absolute;
   bottom: 0;
   right: -1px;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .search-button:hover {

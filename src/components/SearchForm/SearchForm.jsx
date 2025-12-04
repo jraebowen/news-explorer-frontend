@@ -1,6 +1,13 @@
 import "./SearchForm.css";
+import clearbutton from "../../assets/clear-button.svg";
 
-function SearchForm({ query, setQuery, onSearch, errorMessage }) {
+function SearchForm({
+  query,
+  setQuery,
+  onSearch,
+  errorMessage,
+  onClearArticles,
+}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(query);
@@ -15,6 +22,15 @@ function SearchForm({ query, setQuery, onSearch, errorMessage }) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+      <button
+        type="button"
+        id="search-button-clear"
+        className="search-button-clear"
+        style={{
+          backgroundImage: `url(${clearbutton})`,
+        }}
+        onClick={onClearArticles}
+      ></button>
       <button type="submit" id="search-button" className="search-button">
         Search
       </button>

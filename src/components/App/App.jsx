@@ -125,6 +125,12 @@ function App() {
     setHoveredCard((prev) => ({ ...prev, [articleUrl]: isHovering }));
   };
 
+  const handleClearArticles = () => {
+    setArticles([]);
+    setQuery("");
+    setHasSearched(false);
+  };
+
   //get saved-news articles
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -249,6 +255,7 @@ function App() {
                       setQuery={setQuery}
                       onSearch={handleSearch}
                       errorMessage={errorMessage}
+                      onClearArticles={handleClearArticles}
                     ></Header>
                     {hasSearched && (
                       <Main
