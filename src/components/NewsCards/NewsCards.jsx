@@ -34,9 +34,9 @@ function NewsCards({
     day: "numeric",
   });
 
-  const capitalSrc = item.source.name.toUpperCase();
-
-  const articleUrl = item.url;
+  const capitalSrc = (item.source?.name || item.source || "").toUpperCase();
+  const articleUrl = item.url || item.link;
+  const articleImage = item.urlToImage || item.image;
 
   return (
     <li className="news-card">
@@ -48,7 +48,7 @@ function NewsCards({
       >
         <div className="news-card__contents">
           <img
-            src={item.urlToImage}
+            src={articleImage}
             alt={item.title}
             className="news-card__image"
           />
@@ -86,8 +86,13 @@ function NewsCards({
               onClick={(e) => {
                 e.preventDefault();
                 if (!isLoggedIn) return;
-                if (isSaved) onArticleDelete(item.url);
-                else onArticleSave(item, query);
+                console.log(item);
+                if (isSaved) {
+                  const savedArticle = savedArticles.find(
+                    (a) => a.url === item.url
+                  );
+                  if (savedArticle) onArticleDelete(savedArticle);
+                } else onArticleSave(item, query);
               }}
               onMouseEnter={() => handleArticleHover(item.url, true)}
               onMouseLeave={() => handleArticleHover(item.url, false)}

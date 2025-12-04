@@ -39,7 +39,15 @@ export function saveArticle(article, query) {
 
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
-    body: JSON.stringify({ ...article, keyword: query }),
+    body: JSON.stringify({
+      keyword: query,
+      title: article.title,
+      description: article.description,
+      date: article.publishedAt,
+      source: article.source.name,
+      url: article.url,
+      image: article.urlToImage,
+    }),
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

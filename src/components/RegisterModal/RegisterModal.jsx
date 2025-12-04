@@ -92,8 +92,8 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
         </label>
 
         <input
-          type="username"
-          name="username"
+          type="name"
+          name="name"
           className="form__input"
           id="username-register-input"
           placeholder="Enter your username"

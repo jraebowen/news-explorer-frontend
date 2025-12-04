@@ -85,25 +85,30 @@ function App() {
 
   //article functions
   const handleArticleSave = (article, query) => {
-    saveArticle(article, query).then((savedArticle) => {
-      setSavedArticles((prev) => [
-        ...prev,
-        { ...savedArticle, keyword: query },
-      ]);
-    });
+    saveArticle(article, query)
+      .then((savedArticle) => {
+        setSavedArticles((prev) => [...prev, savedArticle]);
+      })
+      .catch((err) => {
+        console.error("Failed to save article: ", err);
+      });
   };
 
   const handleArticleDelete = (article) => {
-    deleteArticle(article._id).then(() => {
-      setSavedArticles((prev) =>
-        prev.filter((item) => item._id !== article._id)
-      );
-      setHoveredCard((prev) => {
-        const newHovered = { ...prev };
-        delete newHovered[article._id];
-        return newHovered;
+    deleteArticle(article._id)
+      .then(() => {
+        setSavedArticles((prev) =>
+          prev.filter((item) => item._id !== article._id)
+        );
+        setHoveredCard((prev) => {
+          const newHovered = { ...prev };
+          delete newHovered[article._id];
+          return newHovered;
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to delete article: ", err);
       });
-    });
   };
 
   const handleArticleHover = (articleUrl, isHovering) => {
@@ -151,7 +156,7 @@ function App() {
       return;
     }
     getUserInfo()
-      .then(({ user }) => {
+      .then((user) => {
         setIsLoggedIn(true);
         setCurrentUser(user);
       })
