@@ -26,7 +26,7 @@ function NewsCards({
 
   const isSaved = savedArticles.some((a) => a.url === item.url);
 
-  const date = item.publishedAt;
+  const date = item.publishedAt || item.date;
   const dateObject = new Date(date);
   const updatedDate = dateObject.toLocaleDateString("en-US", {
     year: "numeric",
@@ -91,6 +91,7 @@ function NewsCards({
                   const savedArticle = savedArticles.find(
                     (a) => a.url === item.url
                   );
+                  console.log(savedArticle);
                   if (savedArticle) onArticleDelete(savedArticle);
                 } else onArticleSave(item, query);
               }}
