@@ -7,7 +7,11 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/news-explorer-frontend">
+    <BrowserRouter
+      basename={
+        process.env.NODE_ENV === "production" ? "/news-explorer-frontend" : "/"
+      }
+    >
       <App />
     </BrowserRouter>
   </React.StrictMode>
