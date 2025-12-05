@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* jraebowen@newsexplorer.wildsurf.net:/home/jraebowen/final-project-frontend"
+    "deploy": "npm run build && scp -r ./dist/* jraebowen@newsexplorer.wildsurf.net:/home/jraebowen/news-explorer-frontend"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
