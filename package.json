@@ -1,16 +1,16 @@
 {
-  "name": "news-explorer-frontend",
+  "name": "final-project-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://newsexplorerwildsurf.net",
+  "homepage": "https://newsexplorer.wildsurf.net",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* jraebowen@newsexplorer.wildsurf.net:/home/jraebowen/news-explorer-frontend"
+    "deploy": "npm run build && scp -r ./dist/* jraebowen@newsexplorer.wildsurf.net:/home/jraebowen/final-project-frontend"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
