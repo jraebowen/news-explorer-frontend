@@ -6,7 +6,7 @@ function ProtectedRoute({ isLoggedIn, children, requestLoginModal }) {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/news-explorer-frontend/", { replace: true });
+      navigate("/", { replace: true });
       requestLoginModal();
     }
   }, [isLoggedIn]);

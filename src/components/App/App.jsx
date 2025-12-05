@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Routes,
-  Route,
-  useNavigate,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 //css import
 import "./App.css";
@@ -230,7 +224,7 @@ function App() {
   //protected route function for opening login
   useEffect(() => {
     if (shouldOpenLoginModal) {
-      handleLoginModalOpen(); // whatever function you already use
+      handleLoginModal();
       setShouldOpenLoginModal(false); // reset so it doesn’t reopen later
     }
   }, [shouldOpenLoginModal]);
