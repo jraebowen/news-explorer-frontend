@@ -1,7 +1,7 @@
 import { checkResponse } from "./api";
 
 const newsApiBaseUrl =
-  import.meta.env.NODE_ENV === "production"
+  import.meta.env.PROD === "production"
     ? "https://nomoreparties.co/news/v2/everything"
     : "https://newsapi.org/v2/everything";
 
