@@ -1,5 +1,5 @@
 import "./SearchForm.css";
-import clearbutton from "../../assets/clear-button.svg";
+import clearbutton from "../../assets/clear-button.svg?url";
 
 function SearchForm({
   query,
