@@ -3,13 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import "./Navigation.css";
 
-import logouthome from "../../assets/logout-home.svg";
-import logoutnews from "../../assets/logout-saved-news.svg";
+import logouthome from "../../assets/logout-home.svg?url";
+import logoutnews from "../../assets/logout-saved-news.svg?url";
 import LoggedInContext from "../../contexts/LoggedInContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
-import mobileMenu from "../../assets/mobile-menu.svg";
-import mobileMenuSavedNews from "../../assets/mobile-menu-saved-news.svg";
-import modalClose from "../../assets/modal-close.svg";
+import mobileMenu from "../../assets/mobile-menu.svg?url";
+import mobileMenuSavedNews from "../../assets/mobile-menu-saved-news.svg?url";
+import modalClose from "../../assets/modal-close.svg?url";
 
 function Navigation({
   onLogin,

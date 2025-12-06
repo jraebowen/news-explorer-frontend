@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./NewsCardList.css";
 
 import NewsCards from "../NewsCards/NewsCards";
-import NotFound from "../../assets/not-found-image.svg";
+import NotFound from "../../assets/not-found-image.svg?url";
 
 function NewsCardList({
   renderedArticles,
