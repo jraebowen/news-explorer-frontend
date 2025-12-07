@@ -26,9 +26,6 @@ function SearchForm({
         type="button"
         id="search-button-clear"
         className="search-button-clear"
-        style={{
-          backgroundImage: `url(${clearButton})`,
-        }}
         onClick={onClearArticles}
       ></button>
       <button type="submit" id="search-button" className="search-button">
