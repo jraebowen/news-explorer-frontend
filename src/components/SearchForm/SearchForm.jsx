@@ -27,7 +27,9 @@ function SearchForm({
         id="search-button-clear"
         className="search-button-clear"
         onClick={onClearArticles}
-      ></button>
+      >
+        <img src={clearButton} alt="clear" />
+      </button>
       <button type="submit" id="search-button" className="search-button">
         Search
       </button>
