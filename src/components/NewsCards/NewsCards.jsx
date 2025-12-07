@@ -4,12 +4,19 @@ import { useLocation } from "react-router-dom";
 import "./NewsCards.css";
 
 import LoggedInContext from "../../contexts/LoggedInContext";
-import newsCardSaveIconHover from "../../assets/save-icon-hover.svg?url";
-import newsCardSaveIcon from "../../assets/save-icon.svg?url";
-import newsCardSavedIcon from "../../assets/save-icon-saved.svg?url";
-import newsCardDeleteIcon from "../../assets/delete-icon.svg?url";
-import newsCardDeleteIconHover from "../../assets/delete-icon-hover.svg?url";
+import newsCardSaveIconHover from "../../assets/save-icon-hover.svg";
+import newsCardSaveIcon from "../../assets/save-icon.svg";
+import newsCardSavedIcon from "../../assets/save-icon-saved.svg";
+import newsCardDeleteIcon from "../../assets/delete-icon.svg";
+import newsCardDeleteIconHover from "../../assets/delete-icon-hover.svg";
 import { capitalize } from "../../utils/helpers";
+console.log("SVG imports:", {
+  newsCardSaveIcon,
+  newsCardSaveIconHover,
+  newsCardSavedIcon,
+  newsCardDeleteIcon,
+  newsCardDeleteIconHover,
+});
 
 function NewsCards({
   item,

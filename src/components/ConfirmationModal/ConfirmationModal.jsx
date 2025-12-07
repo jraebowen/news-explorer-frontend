@@ -1,7 +1,7 @@
 import "./ConfirmationModal.css";
 
 import useEscModalClose from "../../hooks/modalEscandOverlay";
-import modalClose from "../../assets/modal-close.svg?url";
+import modalClose from "../../assets/modal-close.svg";
 
 function ConfirmationModal({ onClose, isOpen, onLogin }) {
   useEscModalClose(isOpen, onClose);

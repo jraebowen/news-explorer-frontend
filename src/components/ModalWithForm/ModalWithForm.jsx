@@ -1,7 +1,7 @@
 import "./ModalWithForm.css";
 
 import useEscModalClose from "../../hooks/modalEscandOverlay";
-import modalCloseIcon from "../../assets/modal-close.svg?url";
+import modalCloseIcon from "../../assets/modal-close.svg";
 
 function ModalWithForm({
   onClose,
