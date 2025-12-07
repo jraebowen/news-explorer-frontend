@@ -1,5 +1,5 @@
 import "./SearchForm.css";
-import clearbutton from "../../assets/clear-button.svg";
+import { ReactComponent as clearButton } from "../../assets/clear-button.svg";
 
 function SearchForm({
   query,
@@ -27,7 +27,7 @@ function SearchForm({
         id="search-button-clear"
         className="search-button-clear"
         style={{
-          backgroundImage: `url(${clearbutton})`,
+          backgroundImage: `url(${clearButton})`,
         }}
         onClick={onClearArticles}
       ></button>
