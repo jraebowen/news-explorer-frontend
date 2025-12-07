@@ -1,5 +1,5 @@
 import "./SearchForm.css";
-import { ReactComponent as clearButton } from "../../assets/clear-button.svg";
+import clearButton from "../../assets/clear-button.svg";
 
 function SearchForm({
   query,
