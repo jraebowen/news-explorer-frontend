@@ -1,5 +1,3 @@
-import { useLocation } from "react-router-dom";
-
 import "./Main.css";
 
 import NewsCardList from "../NewsCardList/NewsCardList";

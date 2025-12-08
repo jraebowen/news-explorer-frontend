@@ -1,9 +1,8 @@
 import { checkResponse } from "./api";
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.newsexplorer.wildsurf.net"
-    : "http://localhost:3002";
+const baseUrl = import.meta.env.PROD
+  ? "https://api.newsexplorer.wildsurf.net"
+  : "http://localhost:3002";
 
 export const signUp = (email, password, name) => {
   return fetch(`${baseUrl}/signup`, {

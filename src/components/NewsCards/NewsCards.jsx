@@ -74,12 +74,10 @@ function NewsCards({
               onClick={(e) => {
                 e.preventDefault();
                 if (!isLoggedIn) return;
-                console.log(item);
                 if (isSaved) {
                   const savedArticle = savedArticles.find(
                     (a) => a.url === item.url
                   );
-                  console.log(savedArticle);
                   if (savedArticle) onArticleDelete(savedArticle);
                 } else onArticleSave(item, query);
               }}

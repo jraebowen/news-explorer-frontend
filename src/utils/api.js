@@ -1,9 +1,8 @@
 import { getToken } from "./token";
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.newsexplorer.wildsurf.net"
-    : "http://localhost:3002";
+const baseUrl = import.meta.env.PROD
+  ? "https://api.newsexplorer.wildsurf.net"
+  : "http://localhost:3002";
 
 export const checkResponse = (res) => {
   if (res.ok) {
