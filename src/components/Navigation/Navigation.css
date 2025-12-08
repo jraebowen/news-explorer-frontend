@@ -148,6 +148,11 @@
   display: none;
 }
 
+.nav__links_mobile-btn svg {
+  height: 24px;
+  width: 24px;
+}
+
 .nav__content_mobile-modal {
   display: none;
 }
@@ -286,6 +291,11 @@
     border: none;
     transition: opacity 0.3s ease-in-out;
     padding: 0;
+  }
+
+  .nav__mobile-menu_modal-close-btn svg {
+    height: 24px;
+    width: 24px;
   }
 
   .nav__mobile-menu_modal-close-btn:hover {
