@@ -3,13 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import "./Navigation.css";
 
-import logouthome from "../../assets/logout-home.svg";
-import logoutnews from "../../assets/logout-saved-news.svg";
+import LogoutHomeIcon from "../../assets/logout-home.svg?react";
+import LogoutNewsIcon from "../../assets/logout-saved-news.svg?react";
 import LoggedInContext from "../../contexts/LoggedInContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
-import mobileMenu from "../../assets/mobile-menu.svg";
-import mobileMenuSavedNews from "../../assets/mobile-menu-saved-news.svg";
-import modalClose from "../../assets/modal-close.svg";
+import MobileMenuIcon from "../../assets/mobile-menu.svg?react";
+import MobileMenuSavedNewsIcon from "../../assets/mobile-menu-saved-news.svg?react";
+import ModalCloseIcon from "../../assets/modal-close.svg?react";
 
 function Navigation({
   onLogin,
@@ -83,11 +83,11 @@ function Navigation({
                   onClick={onLogout}
                 >
                   {currentUser?.name}
-                  <img
-                    src={isHomePage ? logouthome : logoutnews}
-                    alt="logout icon"
-                    className="logout-icon"
-                  />
+                  {isHomePage ? (
+                    <LogoutHomeIcon className="logout-icon" />
+                  ) : (
+                    <LogoutNewsIcon className="logout-icon" />
+                  )}
                 </button>
               </li>
             </>
@@ -111,12 +111,9 @@ function Navigation({
           type="button"
           className="nav__links_mobile-btn"
           onClick={toggleMobileMenu}
-          style={{
-            backgroundImage: `url(${
-              isHomePage ? mobileMenu : mobileMenuSavedNews
-            })`,
-          }}
-        />
+        >
+          {isHomePage ? <MobileMenuIcon /> : <MobileMenuSavedNewsIcon />}
+        </button>
       )}
       <>
         <div
@@ -146,12 +143,10 @@ function Navigation({
             <button
               type="button"
               className="nav__mobile-menu_modal-close-btn"
-              style={{
-                backgroundImage: `url(${modalClose}
-              )`,
-              }}
               onClick={toggleMobileMenu}
-            />
+            >
+              <ModalCloseIcon />
+            </button>
           </div>
 
           <ul className="nav__links nav__links_mobile">
@@ -188,11 +183,7 @@ function Navigation({
                     onClick={onLogout}
                   >
                     {currentUser?.name}
-                    <img
-                      src={logouthome}
-                      alt="logout icon"
-                      className="logout-icon"
-                    />
+                    <LogoutHomeIcon className="logout-icon" />
                   </button>
                 </li>
               </>

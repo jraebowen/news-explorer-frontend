@@ -4,19 +4,12 @@ import { useLocation } from "react-router-dom";
 import "./NewsCards.css";
 
 import LoggedInContext from "../../contexts/LoggedInContext";
-import newsCardSaveIconHover from "../../assets/save-icon-hover.svg";
-import newsCardSaveIcon from "../../assets/save-icon.svg";
-import newsCardSavedIcon from "../../assets/save-icon-saved.svg";
-import newsCardDeleteIcon from "../../assets/delete-icon.svg";
-import newsCardDeleteIconHover from "../../assets/delete-icon-hover.svg";
+import NewsCardSaveIconHover from "../../assets/save-icon-hover.svg?react";
+import NewsCardSaveIcon from "../../assets/save-icon.svg?react";
+import NewsCardSavedIcon from "../../assets/save-icon-saved.svg?react";
+import NewsCardDeleteIcon from "../../assets/delete-icon.svg?react";
+import NewsCardDeleteIconHover from "../../assets/delete-icon-hover.svg?react";
 import { capitalize } from "../../utils/helpers";
-console.log("SVG imports:", {
-  newsCardSaveIcon,
-  newsCardSaveIconHover,
-  newsCardSavedIcon,
-  newsCardDeleteIcon,
-  newsCardDeleteIconHover,
-});
 
 function NewsCards({
   item,
@@ -78,21 +71,6 @@ function NewsCards({
             )}
             <button
               className="news-card__btn"
-              style={{
-                backgroundImage: `url(${
-                  !isLoggedIn
-                    ? newsCardSaveIcon
-                    : isHomePage && isSaved
-                    ? newsCardSavedIcon
-                    : isHomePage && !isSaved
-                    ? hoveredCard?.[item.url]
-                      ? newsCardSaveIconHover
-                      : newsCardSaveIcon
-                    : hoveredCard?.[item.url]
-                    ? newsCardDeleteIconHover
-                    : newsCardDeleteIcon
-                })`,
-              }}
               onClick={(e) => {
                 e.preventDefault();
                 if (!isLoggedIn) return;
@@ -107,7 +85,23 @@ function NewsCards({
               }}
               onMouseEnter={() => handleArticleHover(item.url, true)}
               onMouseLeave={() => handleArticleHover(item.url, false)}
-            ></button>
+            >
+              {!isLoggedIn ? (
+                <NewsCardSaveIcon />
+              ) : isHomePage && isSaved ? (
+                <NewsCardSavedIcon />
+              ) : isHomePage && !isSaved ? (
+                hoveredCard?.[item.url] ? (
+                  <NewsCardSaveIconHover />
+                ) : (
+                  <NewsCardSaveIcon />
+                )
+              ) : hoveredCard?.[item.url] ? (
+                <NewsCardDeleteIconHover />
+              ) : (
+                <NewsCardDeleteIcon />
+              )}
+            </button>
           </div>
           <div className="news-card__text">
             <p className="news-card__text-date">{updatedDate}</p>
