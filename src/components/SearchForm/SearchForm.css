@@ -28,6 +28,7 @@
 .search-button-clear {
   height: 20px;
   width: 20px;
+  background: none;
   background-size: contain;
   border: none;
   background-repeat: no-repeat;

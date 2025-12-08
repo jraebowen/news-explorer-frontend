@@ -65,7 +65,14 @@
   position: absolute;
   top: 24px;
   right: 24px;
+  background: none;
 }
+
+.news-card__btn svg {
+  width: 40px;
+  height: 40px;
+}
+
 .news-card__btn:hover {
   cursor: pointer;
 }
