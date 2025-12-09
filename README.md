@@ -31,12 +31,12 @@ This page is connected to News API, which pulls in recent articles based on user
 - API connection
   - Connected to https://newsapi.org/v2/everything API to dynamically pull in news articles based on keyword queries
 - Backend Repository
-  - TO BE UPDATED
+  - (https://github.com/jraebowen/news-explorer-backend)
 
 **Figma**
 
-- [Link to the project design on Figma] (https://www.figma.com/design/3ottwMEhlBt95Dbn8dw1NH/Your-Final-Project?node-id=22618-1384&t=5L4hJW7Fa92dJSWF-0)
+- Link to the project design on Figma: (https://www.figma.com/design/3ottwMEhlBt95Dbn8dw1NH/Your-Final-Project?node-id=22618-1384&t=5L4hJW7Fa92dJSWF-0)
 
 **Final Project**
 
-- Link to deployed project: https://newsexplorer.wildsurf.net/
+- Link to deployed project: (https://newsexplorer.wildsurf.net/)
