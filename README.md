@@ -39,4 +39,4 @@ This page is connected to News API, which pulls in recent articles based on user
 
 **Final Project**
 
-- [Link to deployed project:] (https://jraebowen.github.io/news-explorer-frontend/)
+- Link to deployed project: https://newsexplorer.wildsurf.net/
