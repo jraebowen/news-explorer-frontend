@@ -19,6 +19,7 @@ function NewsCards({
   query,
   hoveredCard,
   handleArticleHover,
+  requestLoginModal,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -73,7 +74,9 @@ function NewsCards({
               className="news-card__btn"
               onClick={(e) => {
                 e.preventDefault();
-                if (!isLoggedIn) return;
+                if (!isLoggedIn) {
+                  return requestLoginModal();
+                }
                 if (isSaved) {
                   const savedArticle = savedArticles.find(
                     (a) => a.url === item.url

@@ -264,6 +264,7 @@ function App() {
                         errorMessage={errorMessage}
                         hoveredCard={hoveredCard}
                         handleArticleHover={handleArticleHover}
+                        requestLoginModal={() => setShouldOpenLoginModal(true)}
                       ></Main>
                     )}
                     <About />

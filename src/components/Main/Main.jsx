@@ -15,6 +15,7 @@ function Main({
   errorMessage,
   hoveredCard,
   handleArticleHover,
+  requestLoginModal,
 }) {
   const renderedArticles = articles.slice(0, visibleArticles);
   const isHomePage = location.pathname === "/";
@@ -46,6 +47,7 @@ function Main({
               errorMessage={errorMessage}
               hoveredCard={hoveredCard}
               handleArticleHover={handleArticleHover}
+              requestLoginModal={requestLoginModal}
             ></NewsCardList>
             {renderedArticles.length < totalArticles && (
               <button className="main__btn-show-more" onClick={handleShowMore}>

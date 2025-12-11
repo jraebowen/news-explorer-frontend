@@ -14,6 +14,7 @@ function NewsCardList({
   errorMessage,
   hoveredCard,
   handleArticleHover,
+  requestLoginModal,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -55,6 +56,7 @@ function NewsCardList({
                 query={query}
                 hoveredCard={hoveredCard}
                 handleArticleHover={handleArticleHover}
+                requestLoginModal={requestLoginModal}
               ></NewsCards>
             );
           })}
