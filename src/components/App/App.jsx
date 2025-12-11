@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
 //css import
 import "./App.css";
@@ -48,6 +54,8 @@ function App() {
   const [existingEmail, setExistingEmail] = useState(false);
 
   const [shouldOpenLoginModal, setShouldOpenLoginModal] = useState(false);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   //article rendering states
   const [articles, setArticles] = useState([]);
@@ -163,11 +171,13 @@ function App() {
   useEffect(() => {
     const jwt = getToken();
     if (!jwt) {
+      setIsAuthenticated(false);
       return;
     }
     getUserInfo()
       .then((user) => {
         setIsLoggedIn(true);
+        setIsAuthenticated(true);
         setCurrentUser(user);
       })
       .catch((err) => {
@@ -276,6 +286,7 @@ function App() {
                 element={
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
+                    isAuthenticated={isAuthenticated}
                     requestLoginModal={() => setShouldOpenLoginModal(true)}
                   >
                     <SavedNews

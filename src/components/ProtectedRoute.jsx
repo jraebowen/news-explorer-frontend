@@ -1,15 +1,20 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ProtectedRoute({ isLoggedIn, children, requestLoginModal }) {
+function ProtectedRoute({
+  isLoggedIn,
+  children,
+  requestLoginModal,
+  isAuthenticated,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoggedIn === false && isAuthenticated === false) {
       navigate("/", { replace: true });
       requestLoginModal();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate, requestLoginModal, isAuthenticated]);
 
   return isLoggedIn ? children : null;
 }
