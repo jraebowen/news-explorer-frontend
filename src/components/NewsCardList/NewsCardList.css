@@ -10,7 +10,7 @@
 .news__saved-news {
   background-color: #f5f6f7;
   padding: 62px 102px;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .news-card-list__no-match {
