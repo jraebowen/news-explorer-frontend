@@ -78,6 +78,13 @@
   }
 }
 
+@media screen and (max-width: 765px) {
+  .search-button-clear {
+    bottom: 20px;
+    right: 40%;
+  }
+}
+
 @media screen and (max-width: 750px) {
   .search-container {
     margin-top: 122px;
@@ -89,6 +96,12 @@
     margin: 0 0 16px 0;
     max-width: 288px;
     height: 56px;
+    padding-right: 0px;
+  }
+
+  .search-button-clear {
+    bottom: 120px;
+    right: 25px;
   }
 
   .search-button {
