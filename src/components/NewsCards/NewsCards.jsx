@@ -4,11 +4,12 @@ import { useLocation } from "react-router-dom";
 import "./NewsCards.css";
 
 import LoggedInContext from "../../contexts/LoggedInContext";
-import newsCardSaveIconHover from "../../assets/save-icon-hover.svg";
-import newsCardSaveIcon from "../../assets/save-icon.svg";
-import newsCardSavedIcon from "../../assets/save-icon-saved.svg";
-import newsCardDeleteIcon from "../../assets/delete-icon.svg";
-import newsCardDeleteIconHover from "../../assets/delete-icon-hover.svg";
+import NewsCardSaveIconHover from "../../assets/save-icon-hover.svg?react";
+import NewsCardSaveIcon from "../../assets/save-icon.svg?react";
+import NewsCardSavedIcon from "../../assets/save-icon-saved.svg?react";
+import NewsCardDeleteIcon from "../../assets/delete-icon.svg?react";
+import NewsCardDeleteIconHover from "../../assets/delete-icon-hover.svg?react";
+import { capitalize } from "../../utils/helpers";
 
 function NewsCards({
   item,
@@ -18,6 +19,7 @@ function NewsCards({
   query,
   hoveredCard,
   handleArticleHover,
+  requestLoginModal,
 }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -26,7 +28,7 @@ function NewsCards({
 
   const isSaved = savedArticles.some((a) => a.url === item.url);
 
-  const date = item.publishedAt;
+  const date = item.publishedAt || item.date;
   const dateObject = new Date(date);
   const updatedDate = dateObject.toLocaleDateString("en-US", {
     year: "numeric",
@@ -34,9 +36,9 @@ function NewsCards({
     day: "numeric",
   });
 
-  const capitalSrc = item.source.name.toUpperCase();
-
-  const articleUrl = item.url;
+  const capitalSrc = (item.source?.name || item.source || "").toUpperCase();
+  const articleUrl = item.url || item.link;
+  const articleImage = item.urlToImage || item.image;
 
   return (
     <li className="news-card">
@@ -48,13 +50,15 @@ function NewsCards({
       >
         <div className="news-card__contents">
           <img
-            src={item.urlToImage}
+            src={articleImage}
             alt={item.title}
             className="news-card__image"
           />
           <div className="news-card__image-content">
             {!isHomePage && (
-              <p className="news-card__image-keyword">{item.keyword}</p>
+              <p className="news-card__image-keyword">
+                {capitalize(item.keyword)}
+              </p>
             )}
 
             {!isHomePage && isLoggedIn && (
@@ -68,30 +72,37 @@ function NewsCards({
             )}
             <button
               className="news-card__btn"
-              style={{
-                backgroundImage: `url(${
-                  !isLoggedIn
-                    ? newsCardSaveIcon
-                    : isHomePage && isSaved
-                    ? newsCardSavedIcon
-                    : isHomePage && !isSaved
-                    ? hoveredCard?.[item.url]
-                      ? newsCardSaveIconHover
-                      : newsCardSaveIcon
-                    : hoveredCard?.[item.url]
-                    ? newsCardDeleteIconHover
-                    : newsCardDeleteIcon
-                })`,
-              }}
               onClick={(e) => {
                 e.preventDefault();
-                if (!isLoggedIn) return;
-                if (isSaved) onArticleDelete(item.url);
-                else onArticleSave(item, query);
+                if (!isLoggedIn) {
+                  return requestLoginModal();
+                }
+                if (isSaved) {
+                  const savedArticle = savedArticles.find(
+                    (a) => a.url === item.url
+                  );
+                  if (savedArticle) onArticleDelete(savedArticle);
+                } else onArticleSave(item, query);
               }}
               onMouseEnter={() => handleArticleHover(item.url, true)}
               onMouseLeave={() => handleArticleHover(item.url, false)}
-            ></button>
+            >
+              {!isLoggedIn ? (
+                <NewsCardSaveIcon />
+              ) : isHomePage && isSaved ? (
+                <NewsCardSavedIcon />
+              ) : isHomePage && !isSaved ? (
+                hoveredCard?.[item.url] ? (
+                  <NewsCardSaveIconHover />
+                ) : (
+                  <NewsCardSaveIcon />
+                )
+              ) : hoveredCard?.[item.url] ? (
+                <NewsCardDeleteIconHover />
+              ) : (
+                <NewsCardDeleteIcon />
+              )}
+            </button>
           </div>
           <div className="news-card__text">
             <p className="news-card__text-date">{updatedDate}</p>

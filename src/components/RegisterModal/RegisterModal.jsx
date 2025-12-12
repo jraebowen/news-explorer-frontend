@@ -5,7 +5,14 @@ import "./RegisterModal.css";
 import { useFormandValidation } from "../../hooks/useFormandValidation.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
+function RegisterModal({
+  isOpen,
+  onClose,
+  onLogin,
+  handleRegistration,
+  setExistingEmail,
+  existingEmail,
+}) {
   const {
     values,
     handleChange,
@@ -19,14 +26,19 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
   useEffect(() => {
     if (isOpen) {
       handleResetValues();
-      setValues({ email: "", password: "", username: "" });
+      setValues({ email: "", password: "", name: "" });
+      setExistingEmail(false);
     }
   }, [isOpen, handleResetValues, setValues]);
 
   //form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration(values);
+    handleRegistration(values).catch((err) => {
+      if (err.type === "email-exists") {
+        setExistingEmail(true);
+      }
+    });
   };
 
   return (
@@ -92,23 +104,23 @@ function RegisterModal({ isOpen, onClose, onLogin, handleRegistration }) {
         </label>
 
         <input
-          type="username"
-          name="username"
+          type="name"
+          name="name"
           className="form__input"
           id="username-register-input"
           placeholder="Enter your username"
           onChange={handleChange}
-          value={values.username || ""}
+          value={values.name || ""}
           required
         />
-        {errors.username && (
-          <span className="form__input-error">{errors.username}</span>
+        {errors.name && (
+          <span className="form__input-error">{errors.name}</span>
         )}
-        {/* {errors.email && (
+        {existingEmail && (
           <span className="form__input-error form__input-error_register-email">
             This email is not available
           </span>
-        )} */}
+        )}
       </fieldset>
     </ModalWithForm>
   );

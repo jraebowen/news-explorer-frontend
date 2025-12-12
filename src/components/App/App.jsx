@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
 //css import
 import "./App.css";
@@ -13,13 +19,19 @@ import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
+import ProtectedRoute from "../ProtectedRoute";
 
 //utils imports
 import { searchArticles } from "../../utils/newsApi";
 import { API_KEY } from "../../utils/constants";
 import * as auth from "../../utils/auth";
-import { getItems, saveArticle, deleteArticle } from "../../utils/api.js";
-import { setToken, removeToken } from "../../utils/token";
+import {
+  getUserInfo,
+  getArticles,
+  saveArticle,
+  deleteArticle,
+} from "../../utils/api.js";
+import { setToken, getToken, removeToken } from "../../utils/token";
 
 //context imports
 import LoggedInContext from "../../contexts/LoggedInContext.js";
@@ -30,7 +42,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({
     email: "",
     password: "",
-    username: "",
+    name: "",
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,6 +50,12 @@ function App() {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
   const [activeModal, setActiveModal] = useState("");
+
+  const [existingEmail, setExistingEmail] = useState(false);
+
+  const [shouldOpenLoginModal, setShouldOpenLoginModal] = useState(false);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   //article rendering states
   const [articles, setArticles] = useState([]);
@@ -79,41 +97,53 @@ function App() {
 
   //article functions
   const handleArticleSave = (article, query) => {
-    saveArticle(article).then((savedArticle) => {
-      setSavedArticles((prev) => [
-        ...prev,
-        { ...savedArticle, keyword: query },
-      ]);
-    });
+    saveArticle(article, query)
+      .then((savedArticle) => {
+        setSavedArticles((prev) => [...prev, savedArticle]);
+      })
+      .catch((err) => {
+        console.error("Failed to save article: ", err);
+      });
   };
 
-  const handleArticleDelete = (articleUrl) => {
-    deleteArticle(articleUrl).then(() => {
-      setSavedArticles((prev) =>
-        prev.filter((article) => article.url !== articleUrl)
-      );
-      setHoveredCard((prev) => {
-        const newHovered = { ...prev };
-        delete newHovered[articleUrl];
-        return newHovered;
+  const handleArticleDelete = (article) => {
+    deleteArticle(article._id)
+      .then(() => {
+        setSavedArticles((prev) =>
+          prev.filter((item) => item._id !== article._id)
+        );
+        setHoveredCard((prev) => {
+          const newHovered = { ...prev };
+          delete newHovered[article._id];
+          return newHovered;
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to delete article: ", err);
       });
-    });
   };
 
   const handleArticleHover = (articleUrl, isHovering) => {
     setHoveredCard((prev) => ({ ...prev, [articleUrl]: isHovering }));
   };
 
+  const handleClearArticles = () => {
+    setArticles([]);
+    setQuery("");
+    setHasSearched(false);
+  };
+
   //get saved-news articles
   useEffect(() => {
-    getItems()
+    if (!isLoggedIn) return;
+    getArticles()
       .then((savedArticles) => {
         setSavedArticles(savedArticles);
       })
       .catch((error) => {
         console.error("Failed to load saved articles:", error);
       });
-  }, []);
+  }, [isLoggedIn]);
 
   //api functions
   const handleSearch = (query) => {
@@ -137,27 +167,39 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  //checking for token on page load - hold for backend portion
-  // useEffect(() => {
-  //   const jwt = getToken();
-  //   if (!jwt) {
-  //     return;
-  //   }
-  //   auth.checkToken(jwt).then(({ user }) => {
-  //     setIsLoggedIn(true);
-  //     setCurrentUser(user);
-  //   });
-  // }, []);
+  //checking for token on page load
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      setIsAuthenticated(false);
+      return;
+    }
+    getUserInfo()
+      .then((user) => {
+        setIsLoggedIn(true);
+        setIsAuthenticated(true);
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        console.error("Failed to find user: ", err);
+      });
+  }, []);
 
   //registration function
   const handleRegistration = (newUser) => {
     return auth
-      .signUp(newUser.email, newUser.password, newUser.username)
+      .signUp(newUser.email, newUser.password, newUser.name)
       .then(() => {
         handleModalClose();
         handleConfirmationModal();
       })
-      .catch(console.error);
+      .catch((err) => {
+        if (err.type === "email-exists") {
+          setExistingEmail(true);
+        } else {
+          console.error(err);
+        }
+      });
   };
 
   //login function
@@ -170,11 +212,11 @@ function App() {
       .then((data) => {
         if (data.token) {
           setToken(data.token);
-          return auth.checkToken(data.token);
+          return getUserInfo();
         }
       })
       .then((data) => {
-        setCurrentUser(data.user);
+        setCurrentUser(data);
         setIsLoggedIn(true);
         handleModalClose();
       })
@@ -188,6 +230,14 @@ function App() {
     navigate("/");
     setIsLoggedIn(false);
   };
+
+  //protected route function for opening login
+  useEffect(() => {
+    if (shouldOpenLoginModal) {
+      handleLoginModal();
+      setShouldOpenLoginModal(false); // reset so it doesn’t reopen later
+    }
+  }, [shouldOpenLoginModal]);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
@@ -209,6 +259,7 @@ function App() {
                       setQuery={setQuery}
                       onSearch={handleSearch}
                       errorMessage={errorMessage}
+                      onClearArticles={handleClearArticles}
                     ></Header>
                     {hasSearched && (
                       <Main
@@ -223,6 +274,7 @@ function App() {
                         errorMessage={errorMessage}
                         hoveredCard={hoveredCard}
                         handleArticleHover={handleArticleHover}
+                        requestLoginModal={() => setShouldOpenLoginModal(true)}
                       ></Main>
                     )}
                     <About />
@@ -232,17 +284,33 @@ function App() {
               <Route
                 path="/saved-news"
                 element={
-                  <SavedNews
-                    onLogout={handleLogout}
-                    toggleMobileMenu={toggleMobileMenu}
-                    isMobileMenuOpened={isMobileMenuOpened}
-                    savedArticles={savedArticles}
-                    onArticleSave={handleArticleSave}
-                    onArticleDelete={handleArticleDelete}
-                    query={query}
-                    hoveredCard={hoveredCard}
-                    handleArticleHover={handleArticleHover}
-                  ></SavedNews>
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    isAuthenticated={isAuthenticated}
+                    requestLoginModal={() => setShouldOpenLoginModal(true)}
+                  >
+                    <SavedNews
+                      onLogout={handleLogout}
+                      toggleMobileMenu={toggleMobileMenu}
+                      isMobileMenuOpened={isMobileMenuOpened}
+                      savedArticles={savedArticles}
+                      onArticleSave={handleArticleSave}
+                      onArticleDelete={handleArticleDelete}
+                      query={query}
+                      hoveredCard={hoveredCard}
+                      handleArticleHover={handleArticleHover}
+                    ></SavedNews>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  isLoggedIn ? (
+                    <Navigate to="/saved-news" replace />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
                 }
               />
             </Routes>
@@ -259,6 +327,8 @@ function App() {
             onClose={handleModalClose}
             onLogin={handleLoginModal}
             handleRegistration={handleRegistration}
+            setExistingEmail={setExistingEmail}
+            existingEmail={existingEmail}
           ></RegisterModal>
           <ConfirmationModal
             isOpen={activeModal === "confirmation-modal"}

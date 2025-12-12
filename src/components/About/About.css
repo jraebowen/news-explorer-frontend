@@ -1,9 +1,10 @@
 .about {
-  height: 624px;
+  min-height: 624px;
   color: #1a1b22;
   display: flex;
   justify-content: center;
   padding: 0 104px 0 104px;
+  flex-grow: 1;
 }
 
 .about__image {

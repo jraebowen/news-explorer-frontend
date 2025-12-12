@@ -1,7 +1,7 @@
 import "./ModalWithForm.css";
 
 import useEscModalClose from "../../hooks/modalEscandOverlay";
-import modalCloseIcon from "../../assets/modal-close.svg";
+import ModalCloseIcon from "../../assets/modal-close.svg?react";
 
 function ModalWithForm({
   onClose,
@@ -18,14 +18,9 @@ function ModalWithForm({
   return (
     <div className={`modal ${isOpen && "modal__is-opened"}`}>
       <div className="modal__container">
-        <button
-          type="button"
-          className="modal__close-button"
-          style={{
-            backgroundImage: `url(${modalCloseIcon})`,
-          }}
-          onClick={onClose}
-        />
+        <button type="button" className="modal__close-button" onClick={onClose}>
+          <ModalCloseIcon />
+        </button>
         <h2 className="modal__title">{title}</h2>
         <form className="form" onSubmit={onSubmit}>
           {children}

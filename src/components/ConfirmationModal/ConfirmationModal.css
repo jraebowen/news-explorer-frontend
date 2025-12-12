@@ -23,6 +23,7 @@
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
+  background: none;
   height: 40px;
   width: 40px;
   border: none;
@@ -31,6 +32,11 @@
   right: -40px;
   padding: 0;
   transition: opacity 0.3s ease-in-out;
+}
+
+.modal__close-button svg {
+  height: 40px;
+  width: 40px;
 }
 
 .modal__close-button:hover {

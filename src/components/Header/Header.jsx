@@ -14,6 +14,7 @@ function Header({
   setQuery,
   onSearch,
   errorMessage,
+  onClearArticles,
 }) {
   return (
     <header
@@ -45,6 +46,7 @@ function Header({
             setQuery={setQuery}
             onSearch={onSearch}
             errorMessage={errorMessage}
+            onClearArticles={onClearArticles}
           ></SearchForm>
         </div>
       </div>

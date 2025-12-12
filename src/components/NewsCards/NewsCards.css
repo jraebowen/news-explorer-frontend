@@ -65,7 +65,14 @@
   position: absolute;
   top: 24px;
   right: 24px;
+  background: none;
 }
+
+.news-card__btn svg {
+  width: 40px;
+  height: 40px;
+}
+
 .news-card__btn:hover {
   cursor: pointer;
 }
@@ -141,12 +148,7 @@
     height: 150px;
   }
 
-  .news-card__btn-save {
-    top: 16px;
-    right: 8px;
-  }
-
-  .news-card__btn-delete {
+  .news-card__btn {
     top: 16px;
     right: 8px;
   }
